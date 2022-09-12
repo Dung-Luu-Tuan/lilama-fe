@@ -1,15 +1,33 @@
-import "./datatable.scss";
+import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { projectColumns } from "./columns";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
+const Project = () => {
+  const [data, setData] = useState([]);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://lilama18.herokuapp.com/api/projects?page=1&limit=20" +
+          "/todos",
+        { withCredentials: true }
+      )
+      .then((response) => console.log(response.data));
+
+    // fetch(
+    //   "https://lilama18.herokuapp.com/api/projects?page=1&limit=20" + "/todos",
+    //   { withCredentials: true }
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+  }, []);
 
   const actionColumn = [
     {
@@ -36,15 +54,15 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
+        Add New Project
+        <Link to="" className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={projectColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
@@ -53,4 +71,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default Project;

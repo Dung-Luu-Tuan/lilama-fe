@@ -14,6 +14,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
+import { loginStore } from "../../store/loginStore";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -46,8 +48,10 @@ async function loginUser(credentials) {
 }
 
 const Login = () => {
+  console.log(loginStore((state) => state.success));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +60,8 @@ const Login = () => {
       password,
     });
     if (response.success === true) {
-      window.location.href = "/home";
+      loginStore.setState({ success: true });
+      navigate("/");
     }
   };
 
