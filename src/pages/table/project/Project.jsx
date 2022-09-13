@@ -8,25 +8,12 @@ import axios from "axios";
 const Project = () => {
   const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-
   useEffect(() => {
     axios
-      .get(
-        "https://lilama18.herokuapp.com/api/projects?page=1&limit=20" +
-          "/todos",
-        { withCredentials: true }
-      )
-      .then((response) => console.log(response.data));
-
-    // fetch(
-    //   "https://lilama18.herokuapp.com/api/projects?page=1&limit=20" + "/todos",
-    //   { withCredentials: true }
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
+      .get("https://lilama18.herokuapp.com/api/projects?page=1&limit=20", {
+        headers: { Authorization: window.localStorage.getItem("token") },
+      })
+      .then((response) => setData(response.data.data));
   }, []);
 
   const actionColumn = [
@@ -37,26 +24,20 @@ const Project = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
+            <div className="viewButton">Edit</div>
+            <div className="deleteButton">Disable</div>
           </div>
         );
       },
     },
   ];
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Project
-        <Link to="" className="link">
-          Add New
+        Thêm dự án mới
+        <Link to="/project/projectUpload" className="link">
+          Thêm mới
         </Link>
       </div>
       <DataGrid
@@ -66,6 +47,7 @@ const Project = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        getRowId={(row) => row.code}
       />
     </div>
   );

@@ -27,56 +27,81 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+
+          <Link to="/project" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
+
           <Link to="/project" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Dự án</span>
             </li>
           </Link>
+
           <Link to="/main-contract" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
               <span>Hợp đồng chính</span>
             </li>
           </Link>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-          <p className="title">USEFUL</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+
+          <Link to="/bindingPackage" style={{ textDecoration: "none" }}>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>Gói Thầu</span>
+            </li>
+          </Link>
+
+          <Link to="/freelanceContract" style={{ textDecoration: "none" }}>
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Hợp đồng thi công</span>
+            </li>
+          </Link>
+
+          <Link to="/fcBudget" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsNoneIcon className="icon" />
+              <span>Chi phí HDTC</span>
+            </li>
+          </Link>
+
+          <Link to="/execution" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsSystemDaydreamOutlinedIcon className="icon" />
+              <span>Thực hiện</span>
+            </li>
+          </Link>
+
+          <Link to="/acceptance" style={{ textDecoration: "none" }}>
+            <li>
+              <PsychologyOutlinedIcon className="icon" />
+              <span>Nghiệm thu</span>
+            </li>
+          </Link>
+
+          <Link to="/income" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Dòng tiền</span>
+            </li>
+          </Link>
+
+          <Link to="/finance" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Tài chính</span>
+            </li>
+          </Link>
+
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

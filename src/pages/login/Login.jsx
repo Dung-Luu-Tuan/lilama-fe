@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { loginStore } from "../../store/loginStore";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -38,13 +39,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 async function loginUser(credentials) {
-  return fetch("https://lilama18.herokuapp.com/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+  return axios
+    .post("https://lilama18.herokuapp.com/login", credentials)
+    .then((data) => data);
 }
 
 const Login = () => {
@@ -59,10 +56,12 @@ const Login = () => {
       username,
       password,
     });
-    if (response.success === true) {
+    if (response.data.success === true) {
       loginStore.setState({ success: true });
+      window.localStorage.setItem("token", response.data.data.token);
       navigate("/");
     }
+    console.log(response);
   };
 
   return (
