@@ -8,13 +8,22 @@ import axios from "axios";
 const BindingPackage = () => {
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://lilama18.herokuapp.com/api/projects?page=1&limit=20", {
-  //       headers: { Authorization: window.localStorage.getItem("token") },
-  //     })
-  //     .then((response) => setData(response.data.data));
-  // }, []);
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'https://lilama18.herokuapp.com/api/binding-packages?page=1&limit=20',
+      headers: { Authorization: window.localStorage.getItem("token") }
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.data);
+        setData(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const actionColumn = [
     {
@@ -31,31 +40,17 @@ const BindingPackage = () => {
       },
     },
   ];
-  const dataTest = [
-    {
-      code: "001",
-      description: "Gói thầu 1"
-    },
-    {
-      code: "002",
-      description: "Gói thầu 2"
-    },
-    {
-      code: "003",
-      description: "Gói thầu 3"
-    }
-  ]
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Thêm dự án mới
-        <Link to="/project/projectUpload" className="link">
+        <Link to="/bindingPackage/bindingPackageUpload" className="link">
           Thêm mới
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={dataTest}
+        rows={data}
         columns={bindingPackageColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
