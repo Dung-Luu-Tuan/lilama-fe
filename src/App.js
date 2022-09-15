@@ -2,9 +2,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Layout from "./pages/layout/Layout";
 import Single from "./pages/single/Single";
-import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { projectInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -18,7 +17,9 @@ import FCBudget from "./pages/table/fcBudget/FCBudget";
 import Finance from "./pages/table/finance/Finance";
 import FreelanceContract from "./pages/table/freelanceContract/FreelanceContract";
 import Income from "./pages/table/income/Income";
-import Upload from "./pages/table/project/Upload";
+import Upload from "./pages/table/Upload";
+import Edit from "./pages/table/Edit";
+import { projectVerifyColumns } from "./pages/table/project/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -45,6 +46,7 @@ function App() {
               }
             />
             <Route path="/login" element={<Login />} />
+
             <Route path="users">
               <Route
                 index
@@ -55,11 +57,12 @@ function App() {
                 }
               />
               <Route path=":userId" element={<Single />} />
-              {/* <Route
+              <Route
                 path="new"
-                element={<New inputs={userInputs} title="Add New User" />} */}
-              {/* /> */}
+                element={<Edit inputs={projectInputs} title="Add New User" />}
+              />
             </Route>
+
             <Route path="project">
               <Route
                 index
@@ -70,8 +73,29 @@ function App() {
                 }
               />
               <Route path=":projectId" element={<Single />} />
-              <Route path="projectUpload" element={<Upload />} />
+              <Route
+                path="projectUpload"
+                element={
+                  <Upload
+                    columns={projectVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit"
+                element={
+                  <Edit
+                    formInputs={projectInputs}
+                    title="Edit project"
+                    api="https://lilama18.herokuapp.com/api/project"
+                  />
+                }
+              />
             </Route>
+
             <Route path="main-contract">
               <Route
                 index

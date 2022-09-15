@@ -1,14 +1,12 @@
-import "../upload.scss";
-import "./project.scss";
-import Sidebar from "../../../components/sidebar/Sidebar";
-import Navbar from "../../../components/navbar/Navbar";
+import "./upload.scss";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
 import { useState } from "react";
 import axios from "axios";
 import FileUpload from "react-material-file-upload";
 import Button from "@mui/material/Button";
-import "../datatable.scss";
+import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { verifyColumns } from "./columns";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
@@ -18,7 +16,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const Upload = () => {
+const Upload = (props) => {
   const [selectedFile, setSelectedFile] = useState();
   const [receiveData, setReceiveData] = useState();
   const [open, setOpen] = useState(false);
@@ -32,13 +30,7 @@ const Upload = () => {
     }, 2000);
   };
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -48,7 +40,7 @@ const Upload = () => {
     data.append("file", selectedFile[0]);
 
     axios
-      .post("https://lilama18.herokuapp.com/api/project/upload/verify", data, {
+      .post(props.api_verify, data, {
         headers: {
           Authorization: window.localStorage.getItem("token"),
           "Content-Type": "multipart/form-data",
@@ -67,7 +59,7 @@ const Upload = () => {
 
     const config = {
       method: "post",
-      url: "https://lilama18.herokuapp.com/api/project/upload/commit",
+      url: props.api_commit,
       headers: { Authorization: window.localStorage.getItem("token") },
       data: { data: receiveData },
     };
@@ -87,7 +79,7 @@ const Upload = () => {
   const handleGetSampleFile = () => {
     var config = {
       method: "get",
-      url: "https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE",
+      url: props.api_sampleLink,
       headers: { Authorization: window.localStorage.getItem("token") },
     };
 
@@ -135,7 +127,7 @@ const Upload = () => {
               <DataGrid
                 className="datagrid"
                 rows={receiveData}
-                columns={verifyColumns}
+                columns={props.columns}
                 pageSize={5}
                 rowsPerPageOptions={[1]}
                 getRowId={(row) => row.code}
