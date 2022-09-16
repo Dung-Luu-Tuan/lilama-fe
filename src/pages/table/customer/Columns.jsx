@@ -29,15 +29,9 @@ export const customerColumns = [
       return (
         <div className="cellAction">
           <Link
-            to="/project/edit"
+            to={`/customer/edit/${params.row.id}`}
             className="link"
             style={{ textDecoration: "none" }}
-            state={{
-              code: params.row.code,
-              company: params.row.company,
-              address: params.row.address,
-              id: params.row.id,
-            }}
           >
             <div className="editButton">Edit</div>
           </Link>

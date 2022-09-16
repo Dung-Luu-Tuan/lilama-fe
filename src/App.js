@@ -3,7 +3,7 @@ import Login from "./pages/login/Login";
 import Layout from "./pages/layout/Layout";
 import Single from "./pages/single/Single";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { projectInputs, userInputs } from "./formSource";
+import { projectInputs, userInputs, customerInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -118,16 +118,16 @@ function App() {
                   />
                 }
               /> */}
-              {/* <Route
-                path="edit"
+              <Route
+                path="edit/:id"
                 element={
                   <Edit
-                    formInputs={projectInputs}
-                    title="Edit project"
-                    api="https://lilama18.herokuapp.com/api/project"
+                    formInputs={customerInputs}
+                    title="Edit customer"
+                    api="https://lilama18.herokuapp.com/api/customer"
                   />
                 }
-              /> */}
+              />
             </Route>
 
             <Route path="main-contract">

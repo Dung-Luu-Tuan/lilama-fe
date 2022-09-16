@@ -12,7 +12,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 });
 
 const Edit = (props) => {
-  const [data, setData] = useState([]);
+  const [detail, setDetail] = useState([]);
   const [open, setOpen] = useState(false);
   const { id } = useParams();
 
@@ -26,10 +26,10 @@ const Edit = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://lilama18.herokuapp.com/api/project/${id}`, {
+      .get(`${props.api}/${id}`, {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
-      .then((response) => setData(response.data.data));
+      .then((response) => setDetail(response.data.data));
   }, []);
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ const Edit = (props) => {
 
     var config = {
       method: "patch",
-      url: `${props.api}/${data.id}`,
+      url: `${props.api}/${detail.id}`,
       headers: { Authorization: window.localStorage.getItem("token") },
       data: data,
     };
@@ -81,7 +81,7 @@ const Edit = (props) => {
                   <input
                     type={input.type}
                     placeholder={input.placeholder}
-                    defaultValue={data[input.id]}
+                    defaultValue={detail[input.id]}
                     readOnly={input.canEdit}
                     name={input.id}
                   />
