@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 
-export const projectColumns = [
+export const executorColumns = [
   {
     field: "code",
-    headerName: "Tên dự án",
+    headerName: "DCTT",
     width: 200,
   },
   {
-    field: "description",
-    headerName: "Thông tin dự án",
+    field: "info",
+    headerName: "Thông tin DVTT",
     width: 500,
   },
   {
@@ -25,7 +25,7 @@ export const projectColumns = [
       return (
         <div className="cellAction">
           <Link
-            to={`/project/edit/${params.row.id}`}
+            to={`/executor/edit/${params.row.id}`}
             className="link"
             style={{ textDecoration: "none" }}
           >
@@ -35,7 +35,7 @@ export const projectColumns = [
             className="deleteButton"
             onClick={() =>
               useDisable({
-                api: "https://lilama18.herokuapp.com/api/project",
+                api: "https://lilama18.herokuapp.com/api/executor",
                 id: params.row.id,
               })()
             }
@@ -48,15 +48,15 @@ export const projectColumns = [
   },
 ];
 
-export const projectVerifyColumns = [
+export const executorVerifyColumns = [
   {
     field: "code",
-    headerName: "Tên dự án",
+    headerName: "DCTT",
     width: 200,
   },
   {
-    field: "description",
-    headerName: "Thông tin dự án",
+    field: "info",
+    headerName: "Thông tin DVTT",
     width: 500,
   },
 ];

@@ -1,53 +1,40 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { mainContractColumns } from "./columns";
+import { mainContractColumns } from "./Columns";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const MainContract = () => {
   const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  useEffect(() => {
+    axios
+      .get(
+        "https://lilama18.herokuapp.com/api/main-contracts?page=1&limit=20",
+        {
+          headers: { Authorization: window.localStorage.getItem("token") },
+        }
+      )
+      .then((response) => setData(response.data.data));
+  }, []);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
+  console.log(data);
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Project
-        <Link to="" className="link">
-          Add New
+        Thêm hợp đồng chính mới
+        <Link to="/main-contract/mainContractUpload" className="link">
+          Thêm mới
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={mainContractColumns.concat(actionColumn)}
+        columns={mainContractColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        checkboxSelection
       />
     </div>
   );

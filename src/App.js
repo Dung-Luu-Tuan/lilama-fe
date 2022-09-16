@@ -3,7 +3,14 @@ import Login from "./pages/login/Login";
 import Layout from "./pages/layout/Layout";
 import Single from "./pages/single/Single";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { projectInputs, userInputs, customerInputs } from "./formSource";
+import {
+  projectInputs,
+  userInputs,
+  customerInputs,
+  mainContractInputs,
+  executorInputs,
+  freelanceContractInputs,
+} from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -13,7 +20,7 @@ import Customer from "./pages/table/customer/Customer";
 import MainContract from "./pages/table/mainContract/MainContract";
 import Acceptance from "./pages/table/acceptance/Acceptance";
 import BindingPackage from "./pages/table/bindingPackage/BindingPackage";
-import Execution from "./pages/table/execution/Execution";
+import Executor from "./pages/table/executor/Executor";
 import FCBudget from "./pages/table/fcBudget/FCBudget";
 import Finance from "./pages/table/finance/Finance";
 import FreelanceContract from "./pages/table/freelanceContract/FreelanceContract";
@@ -21,6 +28,10 @@ import Income from "./pages/table/income/Income";
 import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
+import { customerVerifyColumns } from "./pages/table/customer/Columns";
+import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
+import { executorVerifyColumns } from "./pages/table/executor/Columns";
+import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -73,7 +84,6 @@ function App() {
                   </Layout>
                 }
               />
-              <Route path=":projectId" element={<Single />} />
               <Route
                 path="projectUpload"
                 element={
@@ -107,17 +117,17 @@ function App() {
                 }
               />
               <Route path=":projectId" element={<Single />} />
-              {/* <Route
+              <Route
                 path="customerUpload"
                 element={
                   <Upload
-                    columns={projectVerifyColumns}
-                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
-                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
-                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                    columns={customerVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/customer/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/customer/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_CUSTOMER_SAMPLE_FILE"
                   />
                 }
-              /> */}
+              />
               <Route
                 path="edit/:id"
                 element={
@@ -139,13 +149,27 @@ function App() {
                   </Layout>
                 }
               />
-              <Route path=":productId" element={<Single />} />
-              {/* <Route
-                path="new"
+              <Route
+                path="mainContractUpload"
                 element={
-                  <New inputs={productInputs} title="Thêm hợp đồng mới" />
+                  <Upload
+                    columns={mainContractVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/main-contract/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/main-contract/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_MAIN_CONTRACT_SAMPLE_FILE"
+                  />
                 }
-              /> */}
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={mainContractInputs}
+                    title="Edit main contract"
+                    api="https://lilama18.herokuapp.com/api/main-contract"
+                  />
+                }
+              />
             </Route>
 
             <Route path="bindingPackage">
@@ -161,7 +185,7 @@ function App() {
               <Route path="bindingPackageUpload" element={<Upload />} />
             </Route>
 
-            <Route path="freelanceContract">
+            <Route path="freelance-contract">
               <Route
                 index
                 element={
@@ -170,8 +194,27 @@ function App() {
                   </Layout>
                 }
               />
-              <Route path=":freelanceContractId" element={<Single />} />
-              <Route path="freelanceContractUpload" element={<Upload />} />
+              <Route
+                path="freelanceContractUpload"
+                element={
+                  <Upload
+                    columns={freelanceContractVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/freelance-contract/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/freelance-contract/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_FREELANCE_CONTRACT_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={freelanceContractInputs}
+                    title="Edit freelance contract"
+                    api="https://lilama18.herokuapp.com/api/freelance-contract"
+                  />
+                }
+              />
             </Route>
 
             <Route path="fcBudget">
@@ -187,17 +230,36 @@ function App() {
               <Route path="fcBudgetUpload" element={<Upload />} />
             </Route>
 
-            <Route path="execution">
+            <Route path="executor">
               <Route
                 index
                 element={
                   <Layout>
-                    <Execution />
+                    <Executor />
                   </Layout>
                 }
               />
-              <Route path=":executionId" element={<Single />} />
-              <Route path="executionUpload" element={<Upload />} />
+              <Route
+                path="executorUpload"
+                element={
+                  <Upload
+                    columns={executorVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/executor/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/executor/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_EXECUTOR_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={executorInputs}
+                    title="Edit executor"
+                    api="https://lilama18.herokuapp.com/api/executor"
+                  />
+                }
+              />
             </Route>
 
             <Route path="acceptance">

@@ -54,6 +54,8 @@ const Upload = (props) => {
       });
   };
 
+  console.log(receiveData);
+
   const onCommit = (e) => {
     e.preventDefault();
 
