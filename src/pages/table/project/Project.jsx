@@ -15,6 +15,7 @@ const Project = () => {
       })
       .then((response) => setData(response.data.data));
   }, []);
+  console.log(data);
 
   return (
     <div className="datatable">

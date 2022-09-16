@@ -22,7 +22,7 @@ export const incomeColumns = [
   {
     field: "invoice_date",
     headerName: "Ngày hóa đơn",
-    width: 150,
+    width: 250,
   },
   {
     field: "vat_10",
@@ -47,7 +47,7 @@ export const incomeColumns = [
   {
     field: "payment_request_date",
     headerName: "Ngày Giấy DNTT",
-    width: 150,
+    width: 250,
   },
   {
     field: "payment_request_value",
@@ -67,7 +67,7 @@ export const incomeColumns = [
   {
     field: "received_date",
     headerName: "Ngày nhận",
-    width: 150,
+    width: 250,
   },
   {
     field: "received_value",
@@ -83,5 +83,21 @@ export const incomeColumns = [
     field: "note",
     headerName: "Ghi chú",
     width: 150,
+  },
+
+  {
+    field: "is_advance_payment",
+    headerName: "Thanh toán trước",
+    width: 150,
+  },
+  {
+    field: "remaining_advance_refund",
+    headerName: "Tiền còn lại TƯ giảm dần",
+    width: 200,
+  },
+  {
+    field: "payment_request_debt",
+    headerName: "Số tiền còn nợ theo DNTT",
+    width: 200,
   },
 ];

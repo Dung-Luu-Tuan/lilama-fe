@@ -23,6 +23,7 @@ const Edit = (props) => {
   };
 
   const location = useLocation();
+  console.log(location);
 
   const handleSubmit = (e) => {
     e.preventDefault();
