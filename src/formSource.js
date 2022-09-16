@@ -62,3 +62,30 @@ export const projectInputs = [
     canEdit: "readonly",
   },
 ];
+
+export const customerInputs = [
+  {
+    id: "code",
+    label: "Tên khách hàng",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "company",
+    label: "Công ty",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "address",
+    label: "Địa chỉ",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "tax_code",
+    label: "Mã thuế",
+    type: "text",
+    canEdit: "",
+  },
+];

@@ -26,7 +26,7 @@ const Edit = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://lilama18.herokuapp.com/api/project/${id}`, {
+      .get(`${props.api}/${id}`, {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data));
