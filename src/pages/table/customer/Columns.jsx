@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
-export const projectColumns = [
+
+export const customerColumns = [
   {
     field: "code",
-    headerName: "Tên dự án",
+    headerName: "Tên khách hàng",
     width: 200,
   },
   {
-    field: "description",
-    headerName: "Thông tin dự án",
-    width: 500,
+    field: "company",
+    headerName: "Công ty",
+    width: 200,
   },
   {
-    field: "need_review",
-    headerName: "Yêu cầu xác thực",
+    field: "address",
+    headerName: "Địa chỉ",
+    width: 300,
+  },
+  {
+    field: "tax_code",
+    headerName: "Mã thuế",
     width: 200,
   },
   {
@@ -23,9 +29,15 @@ export const projectColumns = [
       return (
         <div className="cellAction">
           <Link
-            to={`/project/edit/${params.row.id}`}
+            to="/project/edit"
             className="link"
             style={{ textDecoration: "none" }}
+            state={{
+              code: params.row.code,
+              company: params.row.company,
+              address: params.row.address,
+              id: params.row.id,
+            }}
           >
             <div className="editButton">Edit</div>
           </Link>
@@ -33,18 +45,5 @@ export const projectColumns = [
         </div>
       );
     },
-  },
-];
-
-export const projectVerifyColumns = [
-  {
-    field: "code",
-    headerName: "Tên dự án",
-    width: 200,
-  },
-  {
-    field: "description",
-    headerName: "Thông tin dự án",
-    width: 500,
   },
 ];

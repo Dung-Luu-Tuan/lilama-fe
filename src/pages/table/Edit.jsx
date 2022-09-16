@@ -1,18 +1,20 @@
 import "./upload.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useLocation } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const Edit = (props) => {
+  const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
+  const { id } = useParams();
 
   const handleClick = () => {
     setOpen(true);
@@ -22,8 +24,13 @@ const Edit = (props) => {
     setOpen(false);
   };
 
-  const location = useLocation();
-  console.log(location);
+  useEffect(() => {
+    axios
+      .get(`https://lilama18.herokuapp.com/api/project/${id}`, {
+        headers: { Authorization: window.localStorage.getItem("token") },
+      })
+      .then((response) => setData(response.data.data));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +49,7 @@ const Edit = (props) => {
 
     var config = {
       method: "patch",
-      url: `${props.api}/${location.state.id}`,
+      url: `${props.api}/${data.id}`,
       headers: { Authorization: window.localStorage.getItem("token") },
       data: data,
     };
@@ -74,7 +81,7 @@ const Edit = (props) => {
                   <input
                     type={input.type}
                     placeholder={input.placeholder}
-                    defaultValue={location.state[input.id]}
+                    defaultValue={data[input.id]}
                     readOnly={input.canEdit}
                     name={input.id}
                   />
