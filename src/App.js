@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import ProtectedRoute from "./route/ProtectedRoute";
 import Project from "./pages/table/project/Project";
+import Customer from "./pages/table/customer/Customer";
 import MainContract from "./pages/table/mainContract/MainContract";
 import Acceptance from "./pages/table/acceptance/Acceptance";
 import BindingPackage from "./pages/table/bindingPackage/BindingPackage";
@@ -85,7 +86,7 @@ function App() {
                 }
               />
               <Route
-                path="edit"
+                path="edit/:id"
                 element={
                   <Edit
                     formInputs={projectInputs}
@@ -94,6 +95,39 @@ function App() {
                   />
                 }
               />
+            </Route>
+
+            <Route path="customer">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <Customer />
+                  </Layout>
+                }
+              />
+              <Route path=":projectId" element={<Single />} />
+              {/* <Route
+                path="customerUpload"
+                element={
+                  <Upload
+                    columns={projectVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                  />
+                }
+              /> */}
+              {/* <Route
+                path="edit"
+                element={
+                  <Edit
+                    formInputs={projectInputs}
+                    title="Edit project"
+                    api="https://lilama18.herokuapp.com/api/project"
+                  />
+                }
+              /> */}
             </Route>
 
             <Route path="main-contract">
