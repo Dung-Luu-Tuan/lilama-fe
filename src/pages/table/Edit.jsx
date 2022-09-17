@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState, forwardRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+const _ = require("lodash");
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -84,7 +85,7 @@ const Edit = (props) => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">{/* <h1>{title}</h1> */}</div>
+        <div className="top">Cập nhật thông tin</div>
         <div className="bottom">
           <div className="right">
             {detail ? (
@@ -96,15 +97,9 @@ const Edit = (props) => {
                       <input
                         type={input.type}
                         placeholder={input.placeholder}
-                        defaultValue={
-                          !detail[input.id] && input.id2 && input.id3
-                            ? moment(detail[input.id2][input.id3])
-                                .utcOffset(7)
-                                .format("YYYY-MM-DD")
-                            : moment(detail[input.id])
-                                .utcOffset(7)
-                                .format("YYYY-MM-DD")
-                        }
+                        defaultValue={moment(detail[input.id])
+                          .utcOffset(7)
+                          .format("YYYY-MM-DD")}
                         readOnly={input.canEdit}
                         name={input.id}
                       />
@@ -116,12 +111,11 @@ const Edit = (props) => {
                         type={input.type}
                         placeholder={input.placeholder}
                         defaultValue={
-                          !detail[input.id] && input.id2 && input.id3
-                            ? detail[input.id2][input.id3]
+                          !detail[input.id] && input.name
+                            ? _.get(detail, input.name, "defaultValue")
                             : detail[input.id]
                         }
                         readOnly={input.canEdit}
-                        name={input.id}
                       />
                     </div>
                   )
