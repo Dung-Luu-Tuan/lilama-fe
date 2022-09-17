@@ -1,6 +1,6 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { mainContractColumns } from "./columns";
+import { mainContractColumns } from "./Columns";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";

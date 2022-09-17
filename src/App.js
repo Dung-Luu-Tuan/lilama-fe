@@ -35,7 +35,7 @@ import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
 import { incomeVerifyColumns } from "./pages/table/income/Columns";
 import { customerVerifyColumns } from "./pages/table/customer/Columns";
-import { mainContractVerifyColumns } from "./pages/table/mainContract/columns";
+import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
 import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
