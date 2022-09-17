@@ -23,6 +23,7 @@ const Project = () => {
           notifyStore.setState({show: true, message: error.response?.data?.error})
         }).finally(() => setLoading(false));
   }, []);
+  console.log(data);
 
   return (
     <div className="datatable">

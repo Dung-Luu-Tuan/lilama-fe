@@ -19,6 +19,7 @@ const Edit = (props) => {
   const [detail, setDetail] = useState();
   const [open, setOpen] = useState(false);
   const { id } = useParams();
+  console.log(props.formInputs);
 
   const handleClick = () => {
     setOpen(true);
@@ -62,6 +63,8 @@ const Edit = (props) => {
         };
       }
     }
+
+    console.log(data);
 
     var config = {
       method: "patch",
