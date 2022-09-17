@@ -25,21 +25,6 @@ const BindingPackage = () => {
       });
   }, []);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div className="viewButton">Edit</div>
-            <div className="deleteButton">Disable</div>
-          </div>
-        );
-      },
-    },
-  ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -51,7 +36,7 @@ const BindingPackage = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={bindingPackageColumns.concat(actionColumn)}
+        columns={bindingPackageColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

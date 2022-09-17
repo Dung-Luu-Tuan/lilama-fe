@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const financeColumns = [
   {
     field: "main_contract",
@@ -78,5 +80,24 @@ export const financeColumns = [
     field: "settlement_net_profit",
     headerName: "Lãi ròng khi QT",
     width: 200,
+  },
+  {
+    field: "action",
+    headerName: "Action",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellAction">
+          <Link
+            to={`/finance/edit/${params.row.id}`}
+            className="link"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="editButton">Edit</div>
+          </Link>
+          <div className="deleteButton">Disable</div>
+        </div>
+      );
+    },
   },
 ];

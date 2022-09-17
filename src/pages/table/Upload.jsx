@@ -21,6 +21,7 @@ const Upload = (props) => {
   const [receiveData, setReceiveData] = useState();
   const [open, setOpen] = useState(false);
   const [sampleFile, SetSampleFile] = useState();
+  console.log(props);
 
   const handleClick = () => {
     setOpen(true);
@@ -53,6 +54,8 @@ const Upload = (props) => {
         console.log(err);
       });
   };
+
+  console.log(receiveData);
 
   const onCommit = (e) => {
     e.preventDefault();
@@ -130,7 +133,7 @@ const Upload = (props) => {
                 columns={props.columns}
                 pageSize={5}
                 rowsPerPageOptions={[1]}
-                getRowId={(row) => row.code}
+                getRowId={(row) => row.code || row?.main_contract_code}
               />
               <Button
                 className="commitBtn"

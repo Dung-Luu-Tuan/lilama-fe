@@ -15,6 +15,7 @@ const Edit = (props) => {
   const [detail, setDetail] = useState([]);
   const [open, setOpen] = useState(false);
   const { id } = useParams();
+  console.log(props.formInputs);
 
   const handleClick = () => {
     setOpen(true);
@@ -32,6 +33,8 @@ const Edit = (props) => {
       .then((response) => setDetail(response.data.data));
   }, []);
 
+  console.log(detail);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,6 +49,8 @@ const Edit = (props) => {
         };
       }
     }
+
+    console.log(data);
 
     var config = {
       method: "patch",
@@ -76,7 +81,7 @@ const Edit = (props) => {
           <div className="right">
             <form onSubmit={handleSubmit}>
               {props.formInputs.map((input, index) => (
-                <div className="formInput" key={input.id}>
+                <div style={input.canEdit === "readonly" ? {color: '#95a5a6'} : {color:"#2d3436"}} className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
                     type={input.type}

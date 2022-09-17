@@ -38,25 +38,49 @@ const financeListData = {
 const Finance = () => {
   const [data, setData] = useState([]);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div className="viewButton">Edit</div>
-            <div className="deleteButton">Disable</div>
-          </div>
-        );
-      },
-    },
-  ];
-
   useEffect(() => {
-    setData(financeListData.data)
-  }, [])
+    var config = {
+      method: 'get',
+      url: 'https://lilama18.herokuapp.com/api/finances?page=1&limit=20',
+      headers: { Authorization: window.localStorage.getItem("token") }
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.data);
+        setData(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  let result = [];
+  for (let i = 0; i < data.length; i++) {
+    result.push({
+      main_contract: data[i]?.main_contract?.code,
+      mc_value: data[i]?.mc_value,
+      contract_distributed_value: data[i]?.contract_distributed_value,
+      contract_execution_value: data[i]?.contract_execution_value,
+      contract_retention_value: data[i]?.contract_retention_value,
+      contract_year: data[i]?.contract_year,
+      contract_rate: data[i]?.contract_rate,
+      contract_final_value: data[i]?.contract_final_value,
+      contract_net_profit: data[i]?.contract_net_profit,
+      settlement_distributed_value: data[i]?.settlement_distributed_value,
+      settlement_execution_value: data[i]?.settlement_execution_value,
+      settlement_retention_value: data[i]?.settlement_retention_value,
+      settlement_year: data[i]?.settlement_year,
+      settlement_rate: data[i]?.settlement_rate,
+      settlement_final_value: data[i]?.settlement_final_value,
+      settlement_net_profit: data[i]?.settlement_net_profit,
+      created_at: data[i]?.created_at,
+      created_by: data[i]?.created_by,
+      id: data[i]?.id,
+      updated_at: data[i]?.updated_at,
+      updated_by: data[i]?.updated_by
+    })
+  }
 
   return (
     <div className="datatable">
@@ -68,8 +92,8 @@ const Finance = () => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
-        columns={financeColumns.concat(actionColumn)}
+        rows={result}
+        columns={financeColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         getRowId={(row) => row.id}

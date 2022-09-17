@@ -3,7 +3,7 @@ import Login from "./pages/login/Login";
 import Layout from "./pages/layout/Layout";
 import Single from "./pages/single/Single";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { projectInputs, userInputs, customerInputs } from "./formSource";
+import { projectInputs, userInputs, customerInputs, incomeInputs, financeInputs, bindingPackageInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -21,6 +21,8 @@ import Income from "./pages/table/income/Income";
 import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
+import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
+import { incomeVerifyColumns } from "./pages/table/income/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -158,7 +160,27 @@ function App() {
                 }
               />
               <Route path=":bindingPackageId" element={<Single />} />
-              <Route path="bindingPackageUpload" element={<Upload />} />
+              <Route
+                path="bindingPackageUpload"
+                element={
+                  <Upload
+                    columns={bindingPackageVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/binding-package/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/binding-package/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_BINDING_PACKAGE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={bindingPackageInputs}
+                    title="Edit Binding Package"
+                    api="https://lilama18.herokuapp.com/api/binding-package"
+                  />
+                }
+              />
             </Route>
 
             <Route path="freelanceContract">
@@ -223,7 +245,27 @@ function App() {
                 }
               />
               <Route path=":incomeId" element={<Single />} />
-              <Route path="incomeUpload" element={<Upload />} />
+              <Route
+                path="incomeUpload"
+                element={
+                  <Upload
+                    columns={incomeVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/income/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/income/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_INCOME_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={incomeInputs}
+                    title="Edit Income"
+                    api="https://lilama18.herokuapp.com/api/income"
+                  />
+                }
+              />
             </Route>
 
             <Route path="finance">
@@ -237,6 +279,16 @@ function App() {
               />
               <Route path=":financeId" element={<Single />} />
               <Route path="financeUpload" element={<Upload />} />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={financeInputs}
+                    title="Edit Finance"
+                    api="https://lilama18.herokuapp.com/api/finance"
+                  />
+                }
+              />
             </Route>
           </Route>
         </Routes>
