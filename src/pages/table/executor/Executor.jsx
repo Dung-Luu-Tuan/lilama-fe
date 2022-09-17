@@ -5,6 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const Execution = () => {
   const [data, setData] = useState([]);
@@ -19,6 +20,7 @@ const Execution = () => {
       .then((response) => setData(response.data.data))
         .catch(function (error) {
           handleUnauthenticated(error, navigate)
+          notifyStore.setState({show: true, message: error.response?.data?.error})
         }).finally(() => setLoading(false));
   }, []);
 

@@ -18,6 +18,7 @@ import { loginStore } from "../../store/loginStore";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoadingButton from '@mui/lab/LoadingButton';
+import {notifyStore} from "../../store/notifyStore";
 
 
 function Copyright(props) {
@@ -59,6 +60,8 @@ const Login = () => {
     const response = await loginUser({
       username,
       password,
+    }).catch((error) => {
+      notifyStore.setState({show: true, message: error.response?.data?.error})
     }).finally(() => setLoading(false));
     if (response.data.success === true) {
       loginStore.setState({ success: true });
