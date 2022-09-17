@@ -109,6 +109,20 @@ const Sidebar = () => {
             </li>
           </Link>
 
+          <Link to="/costType" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Loại chi phí</span>
+            </li>
+          </Link>
+
+          <Link to="/manager" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Quản lý</span>
+            </li>
+          </Link>
+
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

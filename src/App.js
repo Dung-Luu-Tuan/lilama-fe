@@ -41,6 +41,10 @@ import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/
 import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import CostType from "./pages/table/costType/CostType";
+import { costTypeVerifyColumns } from "./pages/table/costType/Columns";
+import Manager from "./pages/table/manager/Manager";
+import { managerVerifyColumns } from "./pages/table/manager/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -401,6 +405,71 @@ function App() {
                     formInputs={financeInputs}
                     title="Edit Finance"
                     api="https://lilama18.herokuapp.com/api/finance"
+                  />
+                }
+              />
+            </Route>
+
+            <Route path="costType">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <CostType />
+                  </Layout>
+                }
+              />
+              <Route
+                path="costTypeUpload"
+                element={
+                  <Upload
+                    columns={costTypeVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/cost-type/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/cost-type/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_COST_TYPE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={projectInputs}
+                    title="Edit project"
+                    api="https://lilama18.herokuapp.com/api/project"
+                  />
+                }
+              />
+            </Route>
+
+
+            <Route path="manager">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <Manager />
+                  </Layout>
+                }
+              />
+              <Route
+                path="managerUpload"
+                element={
+                  <Upload
+                    columns={managerVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/manager/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/manager/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_MANAGER_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={projectInputs}
+                    title="Edit project"
+                    api="https://lilama18.herokuapp.com/api/project"
                   />
                 }
               />
