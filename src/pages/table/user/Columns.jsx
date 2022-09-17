@@ -45,12 +45,12 @@ export const userColumns = [
             className="deleteButton"
             onClick={() =>
               useDisable({
-                api: "https://lilama18.herokuapp.com/api/project",
+                api: "https://lilama18.herokuapp.com/api/user",
                 id: params.row.id,
               })()
             }
           >
-            Disable
+            Block
           </div>
         </div>
       );

@@ -10,6 +10,7 @@ import {
   mainContractInputs,
   executorInputs,
   freelanceContractInputs,
+  userCreateInputs,
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -28,6 +29,7 @@ import Income from "./pages/table/income/Income";
 import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import User from "./pages/table/user/User";
+import Create from "./pages/table/Create";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
@@ -70,13 +72,11 @@ function App() {
                 }
               />
               <Route
-                path="userUpload"
+                path="userCreate"
                 element={
-                  <Upload
-                    columns={projectVerifyColumns}
-                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
-                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
-                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                  <Create
+                    formInputs={userCreateInputs}
+                    api_create="https://lilama18.herokuapp.com/api/user"
                   />
                 }
               />

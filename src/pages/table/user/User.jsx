@@ -20,7 +20,7 @@ const User = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Thêm dự án mới
-        <Link to="/user/projectUpload" className="link">
+        <Link to="/user/userCreate" className="link">
           Thêm mới
         </Link>
       </div>
