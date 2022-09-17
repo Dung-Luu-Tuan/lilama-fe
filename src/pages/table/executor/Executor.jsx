@@ -14,7 +14,7 @@ const Execution = () => {
 
   useEffect(() => {
     axios
-      .get("https://lilama18.herokuapp.com/api/executors?page=1&limit=20", {
+      .get("https://lilama18.herokuapp.com/api/executors?page=1&limit=200", {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data))

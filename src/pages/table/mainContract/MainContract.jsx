@@ -15,7 +15,7 @@ const MainContract = () => {
   useEffect(() => {
     axios
       .get(
-        "https://lilama18.herokuapp.com/api/main-contracts?page=1&limit=20",
+        "https://lilama18.herokuapp.com/api/main-contracts?page=1&limit=200",
         {
           headers: { Authorization: window.localStorage.getItem("token") },
         }

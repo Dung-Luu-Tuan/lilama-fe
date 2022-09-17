@@ -12,7 +12,7 @@ const FCBudget = () => {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: 'https://lilama18.herokuapp.com/api/budgets?page=1&limit=20',
+      url: 'https://lilama18.herokuapp.com/api/budgets?page=1&limit=200',
       headers: { Authorization: window.localStorage.getItem("token") }
     };
 
