@@ -5,10 +5,13 @@ import Navbar from "../../components/navbar/Navbar";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
-import { useState, forwardRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {useState, forwardRef, useEffect} from "react";
+import {useParams} from "react-router-dom";
 import moment from "moment";
 import {notifyStore} from "../../store/notifyStore";
+import LoadingButton from "@mui/lab/LoadingButton";
+import {Backdrop, CircularProgress} from "@mui/material";
+
 const _ = require("lodash");
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -18,6 +21,8 @@ const Alert = forwardRef(function Alert(props, ref) {
 const Edit = (props) => {
   const [detail, setDetail] = useState();
   const [open, setOpen] = useState(false);
+  const [loadingUpdate, setLoadingUpdate] = useState(false)
+  const [loadingDetails, setLoadingDetails] = useState(true)
   const { id } = useParams();
   console.log(props.formInputs);
 
@@ -30,14 +35,16 @@ const Edit = (props) => {
   };
 
   useEffect(() => {
+
     axios
-      .get(`${props.api}/${id}`, {
-        headers: { Authorization: window.localStorage.getItem("token") },
-      })
-      .then((response) => setDetail(response.data.data))
-        .catch((error) => {
-          notifyStore.setState({show: true, message: error.response?.data?.error})
+        .get(`${props.api}/${id}`, {
+          headers: { Authorization: window.localStorage.getItem("token") },
         })
+        .then((response) => setDetail(response.data.data))
+        .catch((error) => {
+          notifyStore.setState({ show: true, message: error.response?.data?.error })
+        })
+        .finally(() => setLoadingDetails(false))
   }, []);
 
   console.log(detail);
@@ -47,20 +54,21 @@ const Edit = (props) => {
 
     console.log(e.target.elements);
 
-    let data;
+    let data = {};
 
-    for (let i = 0; i < e.target.elements.length - 1; i++) {
-      if (!e.target.elements[i].readOnly) {
-        if (e.target.elements[i].type === "number") {
-          data = {
-            [e.target.elements[i].name]: Number(e.target.elements[i].value),
-            ...data,
-          };
-        }
-        data = {
-          [e.target.elements[i].name]: e.target.elements[i].value,
-          ...data,
-        };
+    for (const element of Array.from(e.target.elements).slice(1)) {
+      if (element.readOnly) continue
+
+      const fieldName = element.name
+      const fieldType = element.type
+      const fieldValue = element.value
+
+      if (!fieldValue) continue
+
+      if (fieldType === "number") {
+        data[fieldName] = Number(fieldValue)
+      } else {
+        data[fieldName] = fieldValue
       }
     }
 
@@ -73,75 +81,71 @@ const Edit = (props) => {
       data: data,
     };
 
+    setLoadingUpdate(true)
     axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        if (response.data.success === true) {
-          handleClick();
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          if (response.data.success === true) {
+            handleClick();
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          notifyStore.setState({ show: true, message: error.response?.data?.error })
+        }).finally(() => setLoadingUpdate(false))
   };
 
   return (
-    <div className="new">
-      <Sidebar />
-      <div className="newContainer">
-        <Navbar />
-        <div className="bottom">
-          <div className="right">
-            {detail ? (
-              <form className="edit-form" onSubmit={handleSubmit}>
-                {props.formInputs.map((input, index) =>
-                  input.type === "date" ? (
+      <div className="new">
+        <Sidebar/>
+        <div className="newContainer">
+          <Navbar/>
+          <div className="bottom">
+            <div className="right">
+              {detail ? (<form className="edit-form" onSubmit={handleSubmit}>
+                {props.formInputs.map((input, index) => input.type === "date" ? (
                     <div className="formInput" key={input.id}>
                       <label>{input.label}</label>
                       <input
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        defaultValue={moment(detail[input.id])
-                          .utcOffset(7)
-                          .format("YYYY-MM-DD")}
-                        readOnly={input.canEdit}
-                        name={input.id}
+                          type={input.type}
+                          placeholder={input.placeholder}
+                          defaultValue={moment(detail[input.id])
+                              .utcOffset(7)
+                              .format("YYYY-MM-DD")}
+                          readOnly={input.canEdit}
+                          name={input.id}
                       />
-                    </div>
-                  ) : (
-                    <div className="formInput" key={input.id}>
-                      <label>{input.label}</label>
-                      <input
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        defaultValue={
-                          !detail[input.id] && input.name
-                            ? _.get(detail, input.name, "defaultValue")
-                            : detail[input.id]
-                        }
-                        readOnly={input.canEdit}
-                      />
-                    </div>
-                  )
-                )}
-                <button className="edit-button" type="submit">Send</button>
-              </form>
-            ) : (
-              ""
-            )}
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              <Alert
-                onClose={handleClose}
-                severity="success"
-                sx={{ width: "100%" }}
-              >
-                Cập nhật thành công
-              </Alert>
-            </Snackbar>
+                    </div>) : (<div className="formInput" key={input.id}>
+                  <label>{input.label}</label>
+                  <input
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      defaultValue={!detail[input.id] && input.name ? _.get(detail, input.name, "defaultValue") : detail[input.id]}
+                      readOnly={input.canEdit}
+                      name={input.id}
+                  />
+                </div>))}
+                <LoadingButton loading={loadingUpdate} className="edit-button" type="submit">Send</LoadingButton>
+              </form>) : ("")}
+              <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                  Cập nhật thành công
+                </Alert>
+              </Snackbar>
+            </div>
           </div>
         </div>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={loadingDetails}
+        >
+          <CircularProgress color="inherit"/>
+        </Backdrop>
       </div>
-    </div>
   );
 };
 
