@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { freelanceContractColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {handleUnauthenticated} from "../../../utils/auth";
 
 const FreelanceContract = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -15,7 +18,10 @@ const FreelanceContract = () => {
           headers: { Authorization: window.localStorage.getItem("token") },
         }
       )
-      .then((response) => setData(response.data.data));
+      .then((response) => setData(response.data.data))
+        .catch(function (error) {
+          handleUnauthenticated(error, navigate)
+        }).finally(() => setLoading(false));
   }, []);
 
   console.log(data);
@@ -29,6 +35,7 @@ const FreelanceContract = () => {
       </div>
       <DataGrid
         className="datagrid"
+        loading={loading}
         rows={data}
         columns={freelanceContractColumns}
         pageSize={9}

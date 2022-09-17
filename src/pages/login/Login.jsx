@@ -17,6 +17,8 @@ import { useState } from "react";
 import { loginStore } from "../../store/loginStore";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoadingButton from '@mui/lab/LoadingButton';
+
 
 function Copyright(props) {
   return (
@@ -48,14 +50,16 @@ const Login = () => {
   console.log(loginStore((state) => state.success));
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     const response = await loginUser({
       username,
       password,
-    });
+    }).finally(() => setLoading(false));
     if (response.data.success === true) {
       loginStore.setState({ success: true });
       window.localStorage.setItem("token", response.data.data.token);
@@ -110,30 +114,15 @@ const Login = () => {
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
+            <LoadingButton
               type="submit"
               fullWidth
+              loading={loading}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            </LoadingButton>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
