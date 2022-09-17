@@ -10,13 +10,10 @@ import {
   mainContractInputs,
   executorInputs,
   freelanceContractInputs,
-<<<<<<< HEAD
   userCreateInputs,
-=======
   bindingPackageInputs,
   incomeInputs,
   financeInputs
->>>>>>> 95871d3fc1cc9c7f7081c0e5955edac6eea8e556
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
