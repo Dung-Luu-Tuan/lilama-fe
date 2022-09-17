@@ -1,12 +1,15 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { mainContractColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {handleUnauthenticated} from "../../../utils/auth";
 
 const MainContract = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -16,7 +19,10 @@ const MainContract = () => {
           headers: { Authorization: window.localStorage.getItem("token") },
         }
       )
-      .then((response) => setData(response.data.data));
+      .then((response) => setData(response.data.data))
+        .catch(function (error) {
+          handleUnauthenticated(error, navigate)
+        }).finally(() => setLoading(false));
   }, []);
 
   console.log(data);
@@ -31,6 +37,7 @@ const MainContract = () => {
       </div>
       <DataGrid
         className="datagrid"
+        loading={loading}
         rows={data}
         columns={mainContractColumns}
         pageSize={9}
