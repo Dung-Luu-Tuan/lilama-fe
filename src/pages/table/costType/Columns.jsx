@@ -54,3 +54,25 @@ export const costTypeVerifyColumns = [
     width: 500,
   },
 ];
+
+
+export const costTypeInputs = [
+  {
+    id: "code",
+    label: "Mã chi phí",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "name",
+    label: "Tên chi phí",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "description",
+    label: "Ghi chú",
+    type: "text",
+    canEdit: "",
+  },
+]

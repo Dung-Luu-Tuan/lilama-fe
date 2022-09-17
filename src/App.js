@@ -12,7 +12,6 @@ import {
   freelanceContractInputs,
   bindingPackageInputs,
   incomeInputs,
-  financeInputs
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -38,13 +37,13 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
-import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
-import { financeVerifyColumns } from "./pages/table/finance/Columns";
-import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import { acceptanceInputs, acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
+import { financeInputs, financeVerifyColumns } from "./pages/table/finance/Columns";
+import { fcBudgetInputs, fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 import CostType from "./pages/table/costType/CostType";
-import { costTypeVerifyColumns } from "./pages/table/costType/Columns";
+import { costTypeInputs, costTypeVerifyColumns } from "./pages/table/costType/Columns";
 import Manager from "./pages/table/manager/Manager";
-import { managerVerifyColumns } from "./pages/table/manager/Columns";
+import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -287,6 +286,16 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={fcBudgetInputs}
+                    title="Edit Budget"
+                    api="https://lilama18.herokuapp.com/api/budget"
+                  />
+                }
+              />
             </Route>
 
             <Route path="executor">
@@ -339,6 +348,16 @@ function App() {
                     api_verify="https://lilama18.herokuapp.com/api/acceptance/upload/verify"
                     api_commit="https://lilama18.herokuapp.com/api/acceptance/upload/commit"
                     api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_ACCEPTANCE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={acceptanceInputs}
+                    title="Edit Acceptance"
+                    api="https://lilama18.herokuapp.com/api/acceptance"
                   />
                 }
               />
@@ -434,9 +453,9 @@ function App() {
                 path="edit/:id"
                 element={
                   <Edit
-                    formInputs={projectInputs}
-                    title="Edit project"
-                    api="https://lilama18.herokuapp.com/api/project"
+                    formInputs={costTypeInputs}
+                    title="Edit Cost Type"
+                    api="https://lilama18.herokuapp.com/api/cost-type"
                   />
                 }
               />
@@ -467,9 +486,9 @@ function App() {
                 path="edit/:id"
                 element={
                   <Edit
-                    formInputs={projectInputs}
-                    title="Edit project"
-                    api="https://lilama18.herokuapp.com/api/project"
+                    formInputs={managerInputs}
+                    title="Edit Manager"
+                    api="https://lilama18.herokuapp.com/api/manager"
                   />
                 }
               />

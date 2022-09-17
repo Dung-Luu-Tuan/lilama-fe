@@ -42,6 +42,8 @@ const Acceptance = () => {
     })
   }
 
+  console.log(result);
+
   return (
     <div className="datatable">
       <div className="datatableTitle">

@@ -33,6 +33,12 @@ export const managerColumns = [
           </Link>
           <div
             className="deleteButton"
+            onClick={() =>
+              useDisable({
+                api: "https://lilama18.herokuapp.com/api/manager",
+                id: params.row.id,
+              })()
+            }
           >
             Disable
           </div>
@@ -41,7 +47,6 @@ export const managerColumns = [
     },
   },
 ];
-
 
 export const managerVerifyColumns = [
   {
@@ -54,4 +59,19 @@ export const managerVerifyColumns = [
     headerName: "Thông tin CBDA",
     width: 200,
   },
-]
+];
+
+export const managerInputs = [
+  {
+    id: "code",
+    label: "CBDA",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "info",
+    label: "Thông tin CBDA",
+    type: "text",
+    canEdit: "",
+  },
+];
