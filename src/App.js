@@ -43,12 +43,17 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
+import {notifyStore} from "./store/notifyStore";
+import Snackbar from "@mui/material/Snackbar";
 import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 
+
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const showNotify = notifyStore(state => state.show)
+  const errorMessage = notifyStore(state => state.message)
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -411,6 +416,15 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal:"center" }}
+          autoHideDuration={5000}
+          open={showNotify}
+          severity="error"
+          onClose={() => notifyStore.setState({show: false})}
+          message={errorMessage}
+          key="error-snackbar"
+      />
     </div>
   );
 }

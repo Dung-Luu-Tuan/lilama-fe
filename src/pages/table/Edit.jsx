@@ -8,6 +8,7 @@ import axios from "axios";
 import { useState, forwardRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import {notifyStore} from "../../store/notifyStore";
 const _ = require("lodash");
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -33,7 +34,10 @@ const Edit = (props) => {
       .get(`${props.api}/${id}`, {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
-      .then((response) => setDetail(response.data.data));
+      .then((response) => setDetail(response.data.data))
+        .catch((error) => {
+          notifyStore.setState({show: true, message: error.response?.data?.error})
+        })
   }, []);
 
   console.log(detail);
