@@ -27,6 +27,7 @@ import FreelanceContract from "./pages/table/freelanceContract/FreelanceContract
 import Income from "./pages/table/income/Income";
 import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
+import User from "./pages/table/user/User";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
@@ -59,19 +60,35 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
 
-            <Route path="users">
+            <Route path="user">
               <Route
                 index
                 element={
                   <Layout>
-                    <Project />
+                    <User />
                   </Layout>
                 }
               />
-              <Route path=":userId" element={<Single />} />
               <Route
-                path="new"
-                element={<Edit inputs={projectInputs} title="Add New User" />}
+                path="userUpload"
+                element={
+                  <Upload
+                    columns={projectVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={userInputs}
+                    title="Edit project"
+                    api="https://lilama18.herokuapp.com/api/user"
+                  />
+                }
               />
             </Route>
 

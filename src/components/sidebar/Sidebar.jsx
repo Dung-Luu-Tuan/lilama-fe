@@ -32,10 +32,10 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
 
-          <Link to="/project" style={{ textDecoration: "none" }}>
+          <Link to="/user" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Tài khoản</span>
             </li>
           </Link>
 
