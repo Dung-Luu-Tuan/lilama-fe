@@ -24,7 +24,7 @@ export const userInputs = [
   {
     id: "phone",
     label: "Điện thoại",
-    type: "number",
+    type: "text",
     canEdit: "string",
   },
   {
@@ -40,6 +40,50 @@ export const userInputs = [
     canEdit: "",
     placeholder: "Mật khẩu gồm 8 ký tự có cả chữ và số",
     validation: "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})",
+  },
+];
+
+export const userCreateInputs = [
+  {
+    id: "username",
+    label: "Tên tài khoản",
+    type: "text",
+    placeholder: "Vd: nguyenvana",
+  },
+  {
+    id: "full_name",
+    label: "Tên đầy đủ",
+    type: "text",
+    canEdit: "",
+    placeholder: "Vd: Nguyễn Văn A",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "text",
+    canEdit: "",
+    placeholder: "Vd: nguyenvana@gmail.com",
+  },
+  {
+    id: "phone",
+    label: "Điện thoại",
+    type: "number",
+    canEdit: "string",
+    placeholder: "Vd: 0909009009",
+  },
+  {
+    id: "permission",
+    label: "Quyền",
+    type: "text",
+    canEdit: "",
+    placeholder: "A hoặc B hoặc C hoặc D",
+  },
+  {
+    id: "password",
+    label: "Mật khẩu",
+    type: "text",
+    canEdit: "",
+    placeholder: "Mật khẩu gồm 8 ký tự có cả chữ và số",
   },
 ];
 

@@ -10,6 +10,7 @@ import {
   mainContractInputs,
   executorInputs,
   freelanceContractInputs,
+  userCreateInputs,
   bindingPackageInputs,
   incomeInputs,
 } from "./formSource";
@@ -30,6 +31,7 @@ import Income from "./pages/table/income/Income";
 import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import User from "./pages/table/user/User";
+import Create from "./pages/table/Create";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
 import { incomeVerifyColumns } from "./pages/table/income/Columns";
@@ -44,9 +46,14 @@ import CostType from "./pages/table/costType/CostType";
 import { costTypeInputs, costTypeVerifyColumns } from "./pages/table/costType/Columns";
 import Manager from "./pages/table/manager/Manager";
 import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Columns";
+import {notifyStore} from "./store/notifyStore";
+import Snackbar from "@mui/material/Snackbar";
+
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const showNotify = notifyStore(state => state.show)
+  const errorMessage = notifyStore(state => state.message)
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -81,13 +88,11 @@ function App() {
                 }
               />
               <Route
-                path="userUpload"
+                path="userCreate"
                 element={
-                  <Upload
-                    columns={projectVerifyColumns}
-                    api_verify="https://lilama18.herokuapp.com/api/project/upload/verify"
-                    api_commit="https://lilama18.herokuapp.com/api/project/upload/commit"
-                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_PROJECT_SAMPLE_FILE"
+                  <Create
+                    formInputs={userCreateInputs}
+                    api_create="https://lilama18.herokuapp.com/api/user"
                   />
                 }
               />
@@ -496,6 +501,15 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal:"center" }}
+          autoHideDuration={5000}
+          open={showNotify}
+          severity="error"
+          onClose={() => notifyStore.setState({show: false})}
+          message={errorMessage}
+          key="error-snackbar"
+      />
     </div>
   );
 }
