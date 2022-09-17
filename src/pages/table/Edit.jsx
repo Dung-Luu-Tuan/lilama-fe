@@ -1,4 +1,5 @@
 import "./upload.scss";
+import "./edit.scss"
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Snackbar from "@mui/material/Snackbar";
@@ -17,6 +18,7 @@ const Edit = (props) => {
   const [detail, setDetail] = useState();
   const [open, setOpen] = useState(false);
   const { id } = useParams();
+  console.log(props.formInputs);
 
   const handleClick = () => {
     setOpen(true);
@@ -58,6 +60,8 @@ const Edit = (props) => {
       }
     }
 
+    console.log(data);
+
     var config = {
       method: "patch",
       url: `${props.api}/${detail.id}`,
@@ -82,11 +86,10 @@ const Edit = (props) => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">Cập nhật thông tin</div>
         <div className="bottom">
           <div className="right">
             {detail ? (
-              <form onSubmit={handleSubmit}>
+              <form className="edit-form" onSubmit={handleSubmit}>
                 {props.formInputs.map((input, index) =>
                   input.type === "date" ? (
                     <div className="formInput" key={input.id}>
@@ -117,7 +120,7 @@ const Edit = (props) => {
                     </div>
                   )
                 )}
-                <button type="submit">Send</button>
+                <button className="edit-button" type="submit">Send</button>
               </form>
             ) : (
               ""

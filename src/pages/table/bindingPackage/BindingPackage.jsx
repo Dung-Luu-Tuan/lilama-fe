@@ -1,12 +1,15 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { bindingPackageColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {handleUnauthenticated} from "../../../utils/auth";
 
 const BindingPackage = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     var config = {
@@ -21,25 +24,10 @@ const BindingPackage = () => {
         setData(response.data.data)
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+      }).finally(() => setLoading(false));
   }, []);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div className="viewButton">Edit</div>
-            <div className="deleteButton">Disable</div>
-          </div>
-        );
-      },
-    },
-  ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -50,8 +38,9 @@ const BindingPackage = () => {
       </div>
       <DataGrid
         className="datagrid"
+        loading={loading}
         rows={data}
-        columns={bindingPackageColumns.concat(actionColumn)}
+        columns={bindingPackageColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

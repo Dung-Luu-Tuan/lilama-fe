@@ -10,7 +10,13 @@ import {
   mainContractInputs,
   executorInputs,
   freelanceContractInputs,
+<<<<<<< HEAD
   userCreateInputs,
+=======
+  bindingPackageInputs,
+  incomeInputs,
+  financeInputs
+>>>>>>> 95871d3fc1cc9c7f7081c0e5955edac6eea8e556
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -31,10 +37,15 @@ import Edit from "./pages/table/Edit";
 import User from "./pages/table/user/User";
 import Create from "./pages/table/Create";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
+import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
+import { incomeVerifyColumns } from "./pages/table/income/Columns";
 import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
+import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
+import { financeVerifyColumns } from "./pages/table/finance/Columns";
+import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -199,7 +210,27 @@ function App() {
                 }
               />
               <Route path=":bindingPackageId" element={<Single />} />
-              <Route path="bindingPackageUpload" element={<Upload />} />
+              <Route
+                path="bindingPackageUpload"
+                element={
+                  <Upload
+                    columns={bindingPackageVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/binding-package/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/binding-package/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_BINDING_PACKAGE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={bindingPackageInputs}
+                    title="Edit Binding Package"
+                    api="https://lilama18.herokuapp.com/api/binding-package"
+                  />
+                }
+              />
             </Route>
 
             <Route path="freelance-contract">
@@ -244,7 +275,17 @@ function App() {
                 }
               />
               <Route path=":fcBudgetId" element={<Single />} />
-              <Route path="fcBudgetUpload" element={<Upload />} />
+              <Route
+                path="fcBudgetUpload"
+                element={
+                  <Upload
+                    columns={fcBudgetVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/budget/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/budget/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_BUDGET_SAMPLE_FILE"
+                  />
+                }
+              />
             </Route>
 
             <Route path="executor">
@@ -289,7 +330,17 @@ function App() {
                 }
               />
               <Route path=":acceptanceId" element={<Single />} />
-              <Route path="acceptanceUpload" element={<Upload />} />
+              <Route
+                path="acceptanceUpload"
+                element={
+                  <Upload
+                    columns={acceptanceVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/acceptance/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/acceptance/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_ACCEPTANCE_SAMPLE_FILE"
+                  />
+                }
+              />
             </Route>
 
             <Route path="income">
@@ -302,7 +353,27 @@ function App() {
                 }
               />
               <Route path=":incomeId" element={<Single />} />
-              <Route path="incomeUpload" element={<Upload />} />
+              <Route
+                path="incomeUpload"
+                element={
+                  <Upload
+                    columns={incomeVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/income/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/income/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_INCOME_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={incomeInputs}
+                    title="Edit Income"
+                    api="https://lilama18.herokuapp.com/api/income"
+                  />
+                }
+              />
             </Route>
 
             <Route path="finance">
@@ -315,7 +386,27 @@ function App() {
                 }
               />
               <Route path=":financeId" element={<Single />} />
-              <Route path="financeUpload" element={<Upload />} />
+              <Route
+                path="financeUpload"
+                element={
+                  <Upload
+                    columns={financeVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/finance/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/finance/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_FINANCE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={financeInputs}
+                    title="Edit Finance"
+                    api="https://lilama18.herokuapp.com/api/finance"
+                  />
+                }
+              />
             </Route>
           </Route>
         </Routes>
