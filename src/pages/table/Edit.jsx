@@ -102,31 +102,40 @@ const Edit = (props) => {
           <Navbar/>
           <div className="bottom">
             <div className="right">
-              {detail ? (<form className="edit-form" onSubmit={handleSubmit}>
-                {props.formInputs.map((input, index) => input.type === "date" ? (
-                    <div className="formInput" key={input.id}>
-                      <label>{input.label}</label>
-                      <input
-                          type={input.type}
-                          placeholder={input.placeholder}
-                          defaultValue={moment(detail[input.id])
-                              .utcOffset(7)
-                              .format("YYYY-MM-DD")}
-                          readOnly={input.canEdit}
-                          name={input.id}
-                      />
-                    </div>) : (<div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input
-                      type={input.type}
-                      placeholder={input.placeholder}
-                      defaultValue={!detail[input.id] && input.name ? _.get(detail, input.name, "defaultValue") : detail[input.id]}
-                      readOnly={input.canEdit}
-                      name={input.id}
-                  />
-                </div>))}
-                <LoadingButton loading={loadingUpdate} className="edit-button" type="submit">Send</LoadingButton>
-              </form>) : ("")}
+              {detail && (<form className="edit-form" onSubmit={handleSubmit}>
+                {props.formInputs.map((input, index) => (
+                    input.type === "date"
+                        ? (
+                            <div className="formInput" key={input.id}>
+                              <label>{input.label}</label>
+                              <input
+                                  type={input.type}
+                                  placeholder={input.placeholder}
+                                  defaultValue={moment(detail[input.id])
+                                      .utcOffset(7)
+                                      .format("YYYY-MM-DD")}
+                                  readOnly={input.canEdit}
+                                  className={input.canEdit ? "readonly-input" : ""}
+                                  name={input.id}
+                              />
+                            </div>
+                        )
+                        : (
+                            <div className="formInput" key={input.id}>
+                              <label>{input.label}</label>
+                              <input
+                                  type={input.type}
+                                  placeholder={input.placeholder}
+                                  defaultValue={!detail[input.id] && input.name ? _.get(detail, input.name, "defaultValue") : detail[input.id]}
+                                  readOnly={input.canEdit}
+                                  className={input.canEdit ? "readonly-input" : ""}
+                                  name={input.id}
+                              />
+                            </div>
+                        )
+                ))}
+                <LoadingButton loading={loadingUpdate} className="edit-button" type="submit">Cập nhật</LoadingButton>
+              </form>)}
               <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert
                     onClose={handleClose}

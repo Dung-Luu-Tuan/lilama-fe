@@ -27,7 +27,7 @@ const User = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dự án mới
+        Tài khoản
         <Link to="/user/userCreate" className="link">
           Thêm mới
         </Link>

@@ -32,7 +32,7 @@ const MainContract = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm hợp đồng chính mới
+        Hợp đồng chính
         <Link to="/main-contract/mainContractUpload" className="link">
           Thêm mới
         </Link>

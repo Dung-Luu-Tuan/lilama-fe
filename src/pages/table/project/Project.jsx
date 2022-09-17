@@ -28,7 +28,7 @@ const Project = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dự án mới
+        Dự án
         <Link to="/project/projectUpload" className="link">
           Thêm mới
         </Link>

@@ -33,7 +33,7 @@ const BindingPackage = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dự án mới
+        Gói thầu
         <Link to="/bindingPackage/bindingPackageUpload" className="link">
           Thêm mới
         </Link>

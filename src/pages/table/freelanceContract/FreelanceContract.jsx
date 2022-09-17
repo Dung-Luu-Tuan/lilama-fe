@@ -30,7 +30,7 @@ const FreelanceContract = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm HDTC mới
+        HDTC
         <Link to="/freelance-contract/freelanceContractUpload" className="link">
           Thêm mới
         </Link>

@@ -29,7 +29,7 @@ const Execution = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thực hiện
+        Đơn vị thực thi
         <Link to="/executor/executorUpload" className="link">
           Thêm mới
         </Link>

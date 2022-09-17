@@ -27,7 +27,7 @@ const Customer = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm khách hàng mới
+        Khách hàng
         <Link to="/customer/customerUpload" className="link">
           Thêm mới
         </Link>

@@ -63,7 +63,7 @@ const Income = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dòng tiền mới
+        Dòng tiền
         <Link to="/income/incomeUpload" className="link">
           Thêm mới
         </Link>
