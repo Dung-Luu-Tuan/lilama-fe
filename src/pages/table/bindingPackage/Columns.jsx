@@ -65,3 +65,4 @@ export const bindingPackageVerifyColumns = [
     width: 500,
   },
 ];
+

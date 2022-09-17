@@ -16,13 +16,11 @@ const Customer = () => {
       .then((response) => setData(response.data.data));
   }, []);
 
-  console.log(data);
-
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Thêm khách hàng mới
-        <Link to="/project/projectUpload" className="link">
+        <Link to="/customer/customerUpload" className="link">
           Thêm mới
         </Link>
       </div>

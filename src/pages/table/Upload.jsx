@@ -55,10 +55,10 @@ const Upload = (props) => {
       });
   };
 
-  console.log(receiveData);
 
   const onCommit = (e) => {
     e.preventDefault();
+    console.log(receiveData);
 
     const config = {
       method: "post",
@@ -94,6 +94,8 @@ const Upload = (props) => {
         console.log(error);
       });
   };
+
+  console.log(receiveData);
 
   return (
     <div className="new">
@@ -133,7 +135,7 @@ const Upload = (props) => {
                 columns={props.columns}
                 pageSize={5}
                 rowsPerPageOptions={[1]}
-                getRowId={(row) => row.code || row?.main_contract_code}
+                getRowId={(row) => row.code || row.main_contract_code || row.freelance_contract_code}
               />
               <Button
                 className="commitBtn"

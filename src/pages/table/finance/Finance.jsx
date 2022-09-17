@@ -86,7 +86,7 @@ const Finance = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Tài chính
-        <Link to="/income/incomeUpload" className="link">
+        <Link to="/finance/financeUpload" className="link">
           Thêm mới
         </Link>
       </div>

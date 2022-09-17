@@ -7,37 +7,52 @@ import axios from "axios";
 
 const FCBudget = () => {
   const [data, setData] = useState([]);
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div className="viewButton">Edit</div>
-            <div className="deleteButton">Disable</div>
-          </div>
-        );
-      },
-    },
-  ];
+
+
+  useEffect(() => {
+    var config = {
+      method: 'get',
+      url: 'https://lilama18.herokuapp.com/api/budgets?page=1&limit=20',
+      headers: { Authorization: window.localStorage.getItem("token") }
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.data);
+        setData(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+  
+
+  let result = [];
+  for (let i = 0; i < data.length; i++) {
+    result.push({
+      freelance_contract: data[i]?.freelance_contract?.code,
+      cost_type: data[i]?.cost_type?.code,
+      value: data[i]?.value,
+      description: data[i]?.description,
+      id: data[i]?.id
+    })
+  }
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Chi phí HDCT
-        <Link to="/project/projectUpload" className="link">
+        <Link to="/fcBudget/fcBudgetUpload" className="link">
           Thêm mới
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
-        columns={fcBudgetColumns.concat(actionColumn)}
+        rows={result}
+        columns={fcBudgetColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        getRowId={(row) => row.code}
+        getRowId={(row) => row.id}
       />
     </div>
   );

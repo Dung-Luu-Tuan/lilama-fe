@@ -67,7 +67,7 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link to="/freelanceContract" style={{ textDecoration: "none" }}>
+          <Link to="/freelance-contract" style={{ textDecoration: "none" }}>
             <li>
               <InsertChartIcon className="icon" />
               <span>Hợp đồng thi công</span>
@@ -81,10 +81,10 @@ const Sidebar = () => {
             </li>
           </Link>
 
-          <Link to="/execution" style={{ textDecoration: "none" }}>
+          <Link to="/executor" style={{ textDecoration: "none" }}>
             <li>
               <SettingsSystemDaydreamOutlinedIcon className="icon" />
-              <span>Thực hiện</span>
+              <span>Đơn vị thực hiện</span>
             </li>
           </Link>
 
