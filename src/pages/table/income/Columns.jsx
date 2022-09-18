@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import {renderRel} from "../../../utils/renderCell";
 
 export const incomeColumns = [
   {
     field: "main_contract",
     headerName: "Số HDC",
     width: 150,
+    renderCell: ({ row: { main_contract } }) => {
+      return renderRel(main_contract.code, `/main-contract/edit/${main_contract.id}`, main_contract.need_review)
+    },
   },
   {
     field: "acceptance_note",

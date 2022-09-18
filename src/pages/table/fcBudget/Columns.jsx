@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
+import {renderRel} from "../../../utils/renderCell";
 
 export const fcBudgetColumns = [
   {
     field: "freelance_contract",
     headerName: "Số HDTC",
     width: 200,
+    renderCell: ({ row: { freelance_contract } }) => {
+      return renderRel(freelance_contract.code, `/freelance-contract/edit/${freelance_contract.id}`, freelance_contract.need_review)
+    },
   },
   {
     field: "cost_type",
     headerName: "Mã chi phí",
     width: 200,
+    renderCell: ({ row: { cost_type } }) => {
+      return renderRel(cost_type.name, `/costType/edit/${cost_type.id}`, cost_type.need_review)
+    },
   },
   {
     field: "value",

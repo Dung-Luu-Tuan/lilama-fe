@@ -46,7 +46,7 @@ const Income = () => {
       invoice_code: data[i]?.invoice_code,
       invoice_date: moment(data[i]?.invoice_date).utcOffset(7).format("DD/MM/YYYY"),
       is_advance_payment: data[i]?.is_advance_payment,
-      main_contract: data[i]?.main_contract?.code,
+      main_contract: data[i]?.main_contract,
       note: data[i]?.note,
       payment_request_code: data[i]?.payment_request_code,
       payment_request_date: moment(data[i]?.payment_request_date).utcOffset(7).format("DD/MM/YYYY"),

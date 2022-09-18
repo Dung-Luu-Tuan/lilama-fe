@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
+import {renderRel} from "../../../utils/renderCell";
 
 export const freelanceContractColumns = [
   {
@@ -41,19 +42,25 @@ export const freelanceContractColumns = [
     field: "main_contract",
     headerName: "Số HDC",
     width: 200,
-    renderCell: (params) => <>{params.row.main_contract.code}</>,
+    renderCell: ({ row: { main_contract } }) => {
+      return renderRel(main_contract.code, `/main-contract/edit/${main_contract.id}`, main_contract.need_review)
+    },
   },
   {
     field: "executor",
     headerName: "DVTT",
     width: 200,
-    renderCell: (params) => <>{params.row.executor.code}</>,
+    renderCell: ({ row: { executor } }) => {
+      return renderRel(executor.code, `/executor/edit/${executor.id}`, executor.need_review)
+    },
   },
   {
     field: "manager",
     headerName: "CBDA",
     width: 200,
-    renderCell: (params) => <>{params.row.manager.code}</>,
+    renderCell: ({ row: { manager } }) => {
+      return renderRel(manager.code, `/manager/edit/${manager.id}`, manager.need_review)
+    },
   },
   {
     field: "description",

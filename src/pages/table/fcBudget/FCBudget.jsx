@@ -35,8 +35,8 @@ const FCBudget = () => {
   let result = [];
   for (let i = 0; i < data.length; i++) {
     result.push({
-      freelance_contract: data[i]?.freelance_contract?.code,
-      cost_type: data[i]?.cost_type?.code,
+      freelance_contract: data[i]?.freelance_contract,
+      cost_type: data[i]?.cost_type,
       value: data[i]?.value,
       description: data[i]?.description,
       id: data[i]?.id
