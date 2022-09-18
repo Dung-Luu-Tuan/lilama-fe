@@ -472,7 +472,7 @@ export const executionInputs = [
   {
     id: "document_dates",
     label: "Ngày SCT",
-    type: "date",
+    type: "text",
     canEdit: "",
   },
   {

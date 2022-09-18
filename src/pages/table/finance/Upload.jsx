@@ -33,8 +33,8 @@ const Upload = () => {
   };
 
   const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
+    event,
+    reason
   ) => {
     if (reason === "clickaway") {
       return;

@@ -64,7 +64,7 @@ const Finance = () => {
   let result = [];
   for (let i = 0; i < data.length; i++) {
     result.push({
-      main_contract: data[i]?.main_contract?.code,
+      main_contract: data[i]?.main_contract,
       mc_value: data[i]?.mc_value,
       contract_distributed_value: data[i]?.contract_distributed_value,
       contract_execution_value: data[i]?.contract_execution_value,

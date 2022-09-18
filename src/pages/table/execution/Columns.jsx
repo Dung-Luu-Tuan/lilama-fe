@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const executionColumns = [
   {
     field: "freelance_contract",
     headerName: "Số HDTC",
     width: 200,
-    renderCell: (params) => <>{params.row.freelance_contract.code}</>,
+    renderCell: ({ row: { freelance_contract } }) => {
+      return renderRel(freelance_contract.code, `/freelance-contract/edit/${freelance_contract.id}`, freelance_contract.need_review)
+    },
   },
   {
     field: "cost_type",
     headerName: "Mã chi phí",
     width: 220,
-    renderCell: (params) => <>{params.row.cost_type.code}</>,
+    renderCell: ({ row: { cost_type } }) => {
+      return renderRel(cost_type.name, `/costType/edit/${cost_type.id}`, cost_type.need_review)
+    },
   },
   {
     field: "payment_request_code",
@@ -65,13 +70,6 @@ export const executionColumns = [
     field: "document_dates",
     headerName: "Ngày SCT",
     width: 200,
-    renderCell: (params) => (
-      <>
-        {params.row.document_dates
-          ? moment(params.row.document_dates).utcOffset(7).format("DD/MM/YYYY")
-          : ""}
-      </>
-    ),
   },
   {
     field: "vendor",
@@ -119,11 +117,17 @@ export const executionVerifyColumns = [
     field: "freelance_contract_code",
     headerName: "Số HDTC",
     width: 200,
+    renderCell: ({ row: { freelance_contract, freelance_contract_code } }) => {
+      return renderVerifyRel(freelance_contract_code, freelance_contract)
+    },
   },
   {
     field: "cost_type_code",
     headerName: "Mã chi phí",
     width: 220,
+    renderCell: ({ row: { cost_type, cost_type_code } }) => {
+      return renderVerifyRel(cost_type_code, cost_type)
+    },
   },
   {
     field: "payment_request_code",
@@ -175,13 +179,6 @@ export const executionVerifyColumns = [
     field: "document_dates",
     headerName: "Ngày SCT",
     width: 200,
-    renderCell: (params) => (
-      <>
-        {params.row.document_dates
-          ? moment(params.row.document_dates).utcOffset(7).format("DD/MM/YYYY")
-          : ""}
-      </>
-    ),
   },
   {
     field: "vendor",

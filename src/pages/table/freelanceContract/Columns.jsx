@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const freelanceContractColumns = [
   {
@@ -41,19 +42,25 @@ export const freelanceContractColumns = [
     field: "main_contract",
     headerName: "Số HDC",
     width: 200,
-    renderCell: (params) => <>{params.row.main_contract.code}</>,
+    renderCell: ({ row: { main_contract } }) => {
+      return renderRel(main_contract.code, `/main-contract/edit/${main_contract.id}`, main_contract.need_review)
+    },
   },
   {
     field: "executor",
     headerName: "DVTT",
     width: 200,
-    renderCell: (params) => <>{params.row.executor.code}</>,
+    renderCell: ({ row: { executor } }) => {
+      return renderRel(executor.code, `/executor/edit/${executor.id}`, executor.need_review)
+    },
   },
   {
     field: "manager",
     headerName: "CBDA",
     width: 200,
-    renderCell: (params) => <>{params.row.manager.code}</>,
+    renderCell: ({ row: { manager } }) => {
+      return renderRel(manager.code, `/manager/edit/${manager.id}`, manager.need_review)
+    },
   },
   {
     field: "description",
@@ -150,19 +157,25 @@ export const freelanceContractVerifyColumns = [
     field: "main_contract",
     headerName: "Số HDC",
     width: 200,
-    renderCell: (params) => <>{params.row.main_contract_code}</>,
+    renderCell: ({ row: { main_contract, main_contract_code } }) => {
+      return renderVerifyRel(main_contract_code, main_contract)
+    },
   },
   {
     field: "executor",
     headerName: "DVTT",
     width: 200,
-    renderCell: (params) => <>{params.row.executor_code}</>,
+    renderCell: ({ row: { executor, executor_code } }) => {
+      return renderVerifyRel(executor_code, executor)
+    },
   },
   {
     field: "manager",
     headerName: "CBDA",
     width: 200,
-    renderCell: (params) => <>{params.row.manager_code}</>,
+    renderCell: ({ row: { manager, manager_code } }) => {
+      return renderVerifyRel(manager_code, manager)
+    },
   },
   {
     field: "description",

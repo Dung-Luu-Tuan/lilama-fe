@@ -11,6 +11,10 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
 import Link from "@mui/material/Link";
+import {handleUnauthenticated} from "../../utils/auth";
+import {notifyStore} from "../../store/notifyStore";
+import {useNavigate} from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -21,6 +25,12 @@ const Upload = (props) => {
   const [receiveData, setReceiveData] = useState();
   const [open, setOpen] = useState(false);
   const [sampleFile, SetSampleFile] = useState();
+  const [verifyLoading, setVerifyLoading] = useState(false)
+  const [commitLoading, setCommitLoading] = useState(false)
+  const [sampleLoading, setSampleLoading] = useState(false)
+  const navigate = useNavigate();
+
+
   console.log(props);
 
   const handleClick = () => {
@@ -40,6 +50,7 @@ const Upload = (props) => {
     const data = new FormData();
     data.append("file", selectedFile[0]);
 
+    setVerifyLoading(true)
     axios
       .post(props.api_verify, data, {
         headers: {
@@ -52,7 +63,9 @@ const Upload = (props) => {
       })
       .catch((err) => {
         console.log(err);
-      });
+        handleUnauthenticated(err, navigate)
+        notifyStore.setState({show: true, message: err.response?.data?.error})
+      }).finally(() => setVerifyLoading(false))
   };
 
 
@@ -67,6 +80,7 @@ const Upload = (props) => {
       data: { data: receiveData },
     };
 
+    setCommitLoading(true)
     axios(config)
       .then(function (response) {
         console.log(response.data.success);
@@ -75,8 +89,9 @@ const Upload = (props) => {
         }
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setCommitLoading(false))
   };
 
   const handleGetSampleFile = () => {
@@ -86,13 +101,15 @@ const Upload = (props) => {
       headers: { Authorization: window.localStorage.getItem("token") },
     };
 
+    setSampleLoading(true)
     axios(config)
       .then(function (response) {
         SetSampleFile(response.data);
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setSampleLoading(false))
   };
 
   console.log(receiveData);
@@ -103,25 +120,26 @@ const Upload = (props) => {
       <div className="newContainer">
         <Navbar />
         <div className="container">
-          <Button
+          <LoadingButton
             className="getSampleFileBtn"
+            loading={sampleLoading}
             variant="contained"
             onClick={handleGetSampleFile}
           >
             Lấy file mẫu
-          </Button>
+          </LoadingButton>
           {sampleFile ? (
-            <Link href={sampleFile.data} underline="always">
+            <Link href={sampleFile.data} underline="always" target="_blank">
               {sampleFile.data}
             </Link>
           ) : (
             ""
           )}
-          <FileUpload value={selectedFile} onChange={setSelectedFile} />
+          <FileUpload buttonText="Chọn File" value={selectedFile} onChange={setSelectedFile} />
           {selectedFile ? (
-            <Button className="uploadBtn" variant="contained" onClick={upload}>
-              Send
-            </Button>
+            <LoadingButton loading={verifyLoading} className="uploadBtn" variant="contained" onClick={upload}>
+              Gửi
+            </LoadingButton>
           ) : (
             ""
           )}
@@ -133,17 +151,18 @@ const Upload = (props) => {
                 className="datagrid"
                 rows={receiveData}
                 columns={props.columns}
-                pageSize={5}
+                pageSize={10}
                 rowsPerPageOptions={[1]}
                 getRowId={(row) => row.code || row.main_contract_code || row.freelance_contract_code}
               />
-              <Button
+              <LoadingButton
                 className="commitBtn"
+                loading={commitLoading}
                 variant="contained"
                 onClick={onCommit}
               >
                 Xác nhận
-              </Button>
+              </LoadingButton>
               <Snackbar
                 open={open}
                 autoHideDuration={6000}

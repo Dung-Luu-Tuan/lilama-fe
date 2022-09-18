@@ -35,7 +35,7 @@ const Acceptance = () => {
   let result = [];
   for (let i = 0; i < data.length; i++) {
     result.push({
-      freelance_contract: data[i]?.freelance_contract?.code,
+      freelance_contract: data[i]?.freelance_contract,
       acceptance_value: data[i]?.acceptance_value,
       description: data[i]?.description,
       created_at: moment(data[i]?.created_at).utcOffset(7).format("DD/MM/YYYY"),

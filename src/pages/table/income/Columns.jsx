@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const incomeColumns = [
   {
     field: "main_contract",
     headerName: "Số HDC",
     width: 150,
+    renderCell: ({ row: { main_contract } }) => {
+      return renderRel(main_contract.code, `/main-contract/edit/${main_contract.id}`, main_contract.need_review)
+    },
   },
   {
     field: "acceptance_note",
@@ -127,6 +131,9 @@ export const incomeVerifyColumns = [
     field: "main_contract_code",
     headerName: "Số HDC",
     width: 150,
+    renderCell: ({ row: { main_contract, main_contract_code } }) => {
+      return renderVerifyRel(main_contract_code, main_contract)
+    },
   },
   {
     field: "acceptance_note",
