@@ -96,62 +96,6 @@ const Edit = (props) => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="new">
-      <Sidebar />
-      <div className="newContainer">
-        <Navbar />
-        <div className="bottom">
-          <div className="right">
-            {detail ? (
-              <form className="edit-form" onSubmit={handleSubmit}>
-                {props.formInputs.map((input, index) =>
-                  input.type === "date" ? (
-                    <div className="formInput" key={input.id}>
-                      <label>{input.label}</label>
-                      <input
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        defaultValue={moment(detail[input.id])
-                          .utcOffset(7)
-                          .format("YYYY-MM-DD")}
-                        readOnly={input.canEdit}
-                        name={input.id}
-                      />
-                    </div>
-                  ) : (
-                    <div className="formInput" key={input.id}>
-                      <label>{input.label}</label>
-                      <input
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        defaultValue={
-                          !detail[input.id] && input.name
-                            ? _.get(detail, input.name, "defaultValue")
-                            : detail[input.id]
-                        }
-                        readOnly={input.canEdit}
-                      />
-                    </div>
-                  )
-                )}
-                <button className="edit-button" type="submit">
-                  Send
-                </button>
-              </form>
-            ) : (
-              ""
-            )}
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              <Alert
-                onClose={handleClose}
-                severity="success"
-                sx={{ width: "100%" }}
-              >
-                Cập nhật thành công
-              </Alert>
-            </Snackbar>
-=======
       <div className="new">
         <Sidebar/>
         <div className="newContainer">
@@ -202,7 +146,6 @@ const Edit = (props) => {
                 </Alert>
               </Snackbar>
             </div>
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
           </div>
         </div>
         <Backdrop

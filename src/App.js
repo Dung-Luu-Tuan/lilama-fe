@@ -13,11 +13,7 @@ import {
   userCreateInputs,
   bindingPackageInputs,
   incomeInputs,
-<<<<<<< HEAD
-  financeInputs,
   executionInputs,
-=======
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -45,12 +41,7 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
-<<<<<<< HEAD
-import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
-import { financeVerifyColumns } from "./pages/table/finance/Columns";
-import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 import { executionVerifyColumns } from "./pages/table/execution/Columns";
-=======
 import { acceptanceInputs, acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeInputs, financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetInputs, fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
@@ -60,8 +51,6 @@ import Manager from "./pages/table/manager/Manager";
 import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Columns";
 import {notifyStore} from "./store/notifyStore";
 import Snackbar from "@mui/material/Snackbar";
-
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
