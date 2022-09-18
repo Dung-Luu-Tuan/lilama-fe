@@ -63,33 +63,3 @@ export const fcBudgetVerifyColumns = [
     width: 300,
   },
 ];
-
-
-export const fcBudgetInputs = [
-  {
-    id: "freelance_contract_code",
-    name: "freelance_contract.code",
-    label: "Số HDTC",
-    type: "text",
-    canEdit: "",
-  },
-  {
-    id: "cost_type_code",
-    name: "cost_type.code",
-    label: "Mã chi phí",
-    type: "text",
-    canEdit: "",
-  },
-  {
-    id: "description",
-    label: "Chi tiết chi phí thi công",
-    type: "text",
-    canEdit: "",
-  },
-  {
-    id: "value",
-    label: "GT thi công",
-    type: "number",
-    canEdit: "",
-  },
-];

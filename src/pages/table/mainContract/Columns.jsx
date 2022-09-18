@@ -66,7 +66,7 @@ export const mainContractColumns = [
             className="deleteButton"
             onClick={() =>
               useDisable({
-                api: "https://lilama18.herokuapp.com/api/main-contracts",
+                api: "https://lilama18.herokuapp.com/api/main-contract",
                 id: params.row.id,
               })()
             }

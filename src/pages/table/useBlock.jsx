@@ -1,5 +1,5 @@
 import axios from "axios";
-import Alert from "./Alert";
+// import Alert from "./Alert";
 export const useBlock = (props) => {
   const disable = () => {
     var config = {
@@ -10,7 +10,7 @@ export const useBlock = (props) => {
 
     axios(config)
       .then(function (response) {
-        <Alert message={"Block thành công"} />;
+        alert("Disable" + response.data.success);
         console.log(response);
       })
       .catch(function (error) {

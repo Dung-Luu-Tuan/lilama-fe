@@ -60,18 +60,3 @@ export const managerVerifyColumns = [
     width: 200,
   },
 ];
-
-export const managerInputs = [
-  {
-    id: "code",
-    label: "CBDA",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "info",
-    label: "Thông tin CBDA",
-    type: "text",
-    canEdit: "",
-  },
-];

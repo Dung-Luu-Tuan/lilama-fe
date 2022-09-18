@@ -101,8 +101,6 @@ export const financeColumns = [
   },
 ];
 
-
-
 export const financeVerifyColumns = [
   {
     field: "main_contract_code",
@@ -183,106 +181,5 @@ export const financeVerifyColumns = [
     field: "settlement_net_profit",
     headerName: "Lãi ròng khi QT",
     width: 200,
-  },
-];
-
-
-export const financeInputs = [
-  {
-    id: "main_contract_code",
-    name: "main_contract.code",
-    label: "Số HDC",
-    type: "text",
-    canEdit: "",
-  },
-  {
-    id: "mc_value",
-    label: "Giá trị HDC",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "contract_distributed_value",
-    label: "Giá trị phân bổ HDC tương ứng khi GK",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "contract_execution_value",
-    label: "Chi phí thi công TT khi GK",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "contract_retention_value",
-    label: "Giá trị giữ lại khi GK",
-    type: "number",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_year",
-    label: "Năm GK",
-    type: "text",
-    canEdit: "",
-  },
-  {
-    id: "contract_rate",
-    label: "Tỷ lệ GK (%)",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "contract_final_value",
-    label: "Định phí khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_net_profit",
-    label: "Lãi ròng khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_distributed_value",
-    label: "Giá trị phân bổ HDC tương ứng khi QT",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "settlement_execution_value",
-    label: "Chi phí thi công TT khi QT",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "settlement_retention_value",
-    label: "Giá trị giữ lại khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_year",
-    label: "Năm QT",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "settlement_rate",
-    label: "Tỷ lệ QT (%)",
-    type: "number",
-    canEdit: "",
-  },
-  {
-    id: "settlement_final_value",
-    label: "Định phí khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_net_profit",
-    label: "Lãi ròng khi QT",
-    type: "text",
-    canEdit: "readonly",
   },
 ];

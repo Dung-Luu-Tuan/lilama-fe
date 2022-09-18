@@ -4,12 +4,8 @@ import { userColumns } from "./Columns";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { handleUnauthenticated } from "../../../utils/auth";
-=======
-import {handleUnauthenticated} from "../../../utils/auth";
-import {notifyStore} from "../../../store/notifyStore";
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
+import { notifyStore } from "../../../store/notifyStore";
 
 const User = () => {
   const [data, setData] = useState([]);
@@ -22,27 +18,20 @@ const User = () => {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data))
-<<<<<<< HEAD
       .catch(function (error) {
         handleUnauthenticated(error, navigate);
+        notifyStore.setState({
+          show: true,
+          message: error.response?.data?.error,
+        });
       })
       .finally(() => setLoading(false));
-=======
-        .catch(function (error) {
-          handleUnauthenticated(error, navigate)
-          notifyStore.setState({show: true, message: error.response?.data?.error})
-        }).finally(() => setLoading(false));
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
   }, []);
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
-<<<<<<< HEAD
-        Thêm người dùng mới
-=======
         Tài khoản
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
         <Link to="/user/userCreate" className="link">
           Thêm mới
         </Link>
