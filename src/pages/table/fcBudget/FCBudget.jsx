@@ -1,13 +1,16 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { fcBudgetColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const FCBudget = () => {
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     var config = {
@@ -23,7 +26,9 @@ const FCBudget = () => {
       })
       .catch(function (error) {
         console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setLoading(false));
   }, []);
   
 
@@ -48,6 +53,7 @@ const FCBudget = () => {
       </div>
       <DataGrid
         className="datagrid"
+        loading={loading}
         rows={result}
         columns={fcBudgetColumns}
         pageSize={9}

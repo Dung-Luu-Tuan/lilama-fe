@@ -1,13 +1,17 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { acceptanceColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment/moment";
+import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const Acceptance = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     var config = {
@@ -23,7 +27,9 @@ const Acceptance = () => {
       })
       .catch(function (error) {
         console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setLoading(false));
   }, []);
 
   let result = [];
@@ -54,6 +60,7 @@ const Acceptance = () => {
       </div>
       <DataGrid
         className="datagrid"
+        loading={loading}
         rows={result}
         columns={acceptanceColumns}
         pageSize={9}
