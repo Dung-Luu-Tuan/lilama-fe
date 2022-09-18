@@ -10,13 +10,11 @@ import {
   mainContractInputs,
   executorInputs,
   freelanceContractInputs,
-<<<<<<< HEAD
   userCreateInputs,
-=======
   bindingPackageInputs,
   incomeInputs,
-  financeInputs
->>>>>>> 95871d3fc1cc9c7f7081c0e5955edac6eea8e556
+  financeInputs,
+  executionInputs,
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -36,6 +34,7 @@ import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import User from "./pages/table/user/User";
 import Create from "./pages/table/Create";
+import Execution from "./pages/table/execution/Execution";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
 import { incomeVerifyColumns } from "./pages/table/income/Columns";
@@ -46,6 +45,7 @@ import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/
 import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import { executionVerifyColumns } from "./pages/table/execution/Columns";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -315,6 +315,38 @@ function App() {
                     formInputs={executorInputs}
                     title="Edit executor"
                     api="https://lilama18.herokuapp.com/api/executor"
+                  />
+                }
+              />
+            </Route>
+
+            <Route path="execution">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <Execution />
+                  </Layout>
+                }
+              />
+              <Route
+                path="executionUpload"
+                element={
+                  <Upload
+                    columns={executionVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/execution/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/execution/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_EXECUTION_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={executionInputs}
+                    title="Edit executor"
+                    api="https://lilama18.herokuapp.com/api/execution"
                   />
                 }
               />

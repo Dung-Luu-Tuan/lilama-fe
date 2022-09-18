@@ -1,5 +1,5 @@
 import "./upload.scss";
-import "./edit.scss"
+import "./edit.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Snackbar from "@mui/material/Snackbar";
@@ -120,7 +120,9 @@ const Edit = (props) => {
                     </div>
                   )
                 )}
-                <button className="edit-button" type="submit">Send</button>
+                <button className="edit-button" type="submit">
+                  Send
+                </button>
               </form>
             ) : (
               ""

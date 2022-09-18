@@ -516,3 +516,73 @@ export const freelanceContractInputs = [
     type: "text",
   },
 ];
+export const executionInputs = [
+  {
+    id: "freelance_contract_code",
+    name: "freelance_contract.code",
+    label: "Số HDTC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "cost_type_code",
+    name: "cost_type.code",
+    label: "Mã chi phí",
+    canEdit: "",
+    type: "date",
+  },
+  {
+    id: "payment_request_code",
+    label: "Thời điểm ghi nhận chi phí",
+    canEdit: "",
+    type: "text",
+  },
+  {
+    id: "payment_request_date",
+    label: "Ngày ký GNV",
+    canEdit: "",
+    type: "date",
+  },
+  {
+    id: "payment_request_note",
+    label: "Nội dung đề nghị thanh toán của tháng",
+    canEdit: "",
+    type: "text",
+  },
+  {
+    id: "payment_request_value",
+    label: "GT DNTT",
+    canEdit: "",
+    type: "number",
+  },
+  {
+    id: "expense_date",
+    label: "Thời điểm ghi nhận chi phí",
+    canEdit: "",
+    type: "date",
+  },
+  {
+    id: "document_codes",
+    label: "SCT",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "document_dates",
+    label: "Ngày SCT",
+    type: "date",
+    canEdit: "",
+  },
+  {
+    id: "vendor",
+    label: "NCC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "marking",
+    label: "marking",
+    type: "text",
+    canEdit: "",
+  },
+];

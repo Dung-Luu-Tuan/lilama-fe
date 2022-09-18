@@ -1,14 +1,14 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { executorColumns } from "./Columns";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {handleUnauthenticated} from "../../../utils/auth";
+import { handleUnauthenticated } from "../../../utils/auth";
 
-const Execution = () => {
+const Executor = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +17,10 @@ const Execution = () => {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data))
-        .catch(function (error) {
-          handleUnauthenticated(error, navigate)
-        }).finally(() => setLoading(false));
+      .catch(function (error) {
+        handleUnauthenticated(error, navigate);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   console.log(data);
@@ -27,7 +28,7 @@ const Execution = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thực hiện
+        Đơn vị thực thi
         <Link to="/executor/executorUpload" className="link">
           Thêm mới
         </Link>
@@ -45,4 +46,4 @@ const Execution = () => {
   );
 };
 
-export default Execution;
+export default Executor;
