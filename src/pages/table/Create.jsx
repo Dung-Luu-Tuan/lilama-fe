@@ -1,4 +1,6 @@
 import "./upload.scss";
+import "./edit.scss";
+
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Snackbar from "@mui/material/Snackbar";
@@ -12,10 +14,12 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 const Create = (props) => {
   const [open, setOpen] = useState(false);
-  let errorMessage = useRef();
+  const [status, setStatus] = useState();
+  let message = useRef();
 
-  const handleClick = (props) => {
+  const handleClick = (data) => {
     setOpen(true);
+    setStatus(data);
   };
 
   const handleClose = () => {
@@ -49,12 +53,13 @@ const Create = (props) => {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         if (response.data.success === true) {
-          handleClick();
+          message.current = "Tạo tài khoản thành công";
+          handleClick("success");
         }
       })
       .catch(function (error) {
-        errorMessage.current = error.response.data.error;
-        handleClick();
+        message.current = error.response.data.error;
+        handleClick("error");
       });
   };
 
@@ -63,10 +68,12 @@ const Create = (props) => {
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        <div className="top">Tạo mới</div>
+        <div className="top" style={{ fontSize: "20px", color: "grey" }}>
+          Tạo mới
+        </div>
         <div className="bottom">
           <div className="right">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="edit-form">
               {props.formInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
@@ -77,13 +84,15 @@ const Create = (props) => {
                   />
                 </div>
               ))}
-              <button type="submit">Send</button>
+              <button className="edit-button" type="submit">
+                Send
+              </button>
             </form>
           </div>
         </div>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
-            {errorMessage.current}
+          <Alert onClose={handleClose} severity={status} sx={{ width: "100%" }}>
+            {message.current}
           </Alert>
         </Snackbar>
       </div>

@@ -11,6 +11,9 @@ export const useDisable = (props) => {
     axios(config)
       .then(function (response) {
         console.log(response.data);
+        if (response.data.success === true) {
+          alert("Thành công");
+        }
       })
       .catch(function (error) {
         console.log(error);

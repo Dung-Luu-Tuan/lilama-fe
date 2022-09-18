@@ -288,8 +288,6 @@ export const incomeInputs = [
   },
 ];
 
-
-
 export const mainContractInputs = [
   {
     id: "code",
@@ -486,6 +484,217 @@ export const executionInputs = [
   {
     id: "marking",
     label: "marking",
+    type: "text",
+    canEdit: "",
+  },
+];
+
+export const acceptanceInputs = [
+  {
+    id: "freelance_contract_code",
+    name: "freelance_contract.code",
+    label: "Số HDTC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "description",
+    label: "Nội dung nghiệm thu của đợt",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "execution_value",
+    label: "Giá trị thực hiện",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "acceptance_value",
+    label: "Gt nghiệm thu",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "invoice_date",
+    label: "Ngày hóa đơn",
+    type: "date",
+    canEdit: "",
+  },
+  {
+    id: "new_distributed_value",
+    label: "Giá trị HDC tương ứng dự kiến quyết toán",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "remaining_value",
+    label: "Giá trị dở dang",
+    type: "number",
+    canEdit: "readonly",
+  },
+];
+
+export const financeInputs = [
+  {
+    id: "main_contract_code",
+    name: "main_contract.code",
+    label: "Số HDC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "mc_value",
+    label: "Giá trị HDC",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "contract_distributed_value",
+    label: "Giá trị phân bổ HDC tương ứng khi GK",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "contract_execution_value",
+    label: "Chi phí thi công TT khi GK",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "contract_retention_value",
+    label: "Giá trị giữ lại khi GK",
+    type: "number",
+    canEdit: "readonly",
+  },
+  {
+    id: "contract_year",
+    label: "Năm GK",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "contract_rate",
+    label: "Tỷ lệ GK (%)",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "contract_final_value",
+    label: "Định phí khi GK",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "contract_net_profit",
+    label: "Lãi ròng khi GK",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "settlement_distributed_value",
+    label: "Giá trị phân bổ HDC tương ứng khi QT",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "settlement_execution_value",
+    label: "Chi phí thi công TT khi QT",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "settlement_retention_value",
+    label: "Giá trị giữ lại khi QT",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "settlement_year",
+    label: "Năm QT",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "settlement_rate",
+    label: "Tỷ lệ QT (%)",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "settlement_final_value",
+    label: "Định phí khi QT",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "settlement_net_profit",
+    label: "Lãi ròng khi QT",
+    type: "text",
+    canEdit: "readonly",
+  },
+];
+
+export const fcBudgetInputs = [
+  {
+    id: "freelance_contract_code",
+    name: "freelance_contract.code",
+    label: "Số HDTC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "cost_type_code",
+    name: "cost_type.code",
+    label: "Mã chi phí",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "description",
+    label: "Chi tiết chi phí thi công",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "value",
+    label: "GT thi công",
+    type: "number",
+    canEdit: "",
+  },
+];
+
+export const costTypeInputs = [
+  {
+    id: "code",
+    label: "Mã chi phí",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "name",
+    label: "Tên chi phí",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "description",
+    label: "Ghi chú",
+    type: "text",
+    canEdit: "",
+  },
+];
+
+export const managerInputs = [
+  {
+    id: "code",
+    label: "CBDA",
+    type: "text",
+    canEdit: "readonly",
+  },
+  {
+    id: "info",
+    label: "Thông tin CBDA",
     type: "text",
     canEdit: "",
   },

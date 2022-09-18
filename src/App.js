@@ -13,7 +13,12 @@ import {
   userCreateInputs,
   bindingPackageInputs,
   incomeInputs,
+  financeInputs,
   executionInputs,
+  acceptanceInputs,
+  fcBudgetInputs,
+  costTypeInputs,
+  managerInputs,
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -41,21 +46,21 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
+import { financeVerifyColumns } from "./pages/table/finance/Columns";
+import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 import { executionVerifyColumns } from "./pages/table/execution/Columns";
-import { acceptanceInputs, acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
-import { financeInputs, financeVerifyColumns } from "./pages/table/finance/Columns";
-import { fcBudgetInputs, fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import CostType from "./pages/table/costType/CostType";
-import { costTypeInputs, costTypeVerifyColumns } from "./pages/table/costType/Columns";
+import { costTypeVerifyColumns } from "./pages/table/costType/Columns";
 import Manager from "./pages/table/manager/Manager";
-import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Columns";
-import {notifyStore} from "./store/notifyStore";
+import { managerVerifyColumns } from "./pages/table/manager/Columns";
+import { notifyStore } from "./store/notifyStore";
 import Snackbar from "@mui/material/Snackbar";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  const showNotify = notifyStore(state => state.show)
-  const errorMessage = notifyStore(state => state.message)
+  const showNotify = notifyStore((state) => state.show);
+  const errorMessage = notifyStore((state) => state.message);
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -500,7 +505,6 @@ function App() {
               />
             </Route>
 
-
             <Route path="manager">
               <Route
                 index
@@ -536,13 +540,13 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal:"center" }}
-          autoHideDuration={5000}
-          open={showNotify}
-          severity="error"
-          onClose={() => notifyStore.setState({show: false})}
-          message={errorMessage}
-          key="error-snackbar"
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        autoHideDuration={5000}
+        open={showNotify}
+        severity="error"
+        onClose={() => notifyStore.setState({ show: false })}
+        message={errorMessage}
+        key="error-snackbar"
       />
     </div>
   );

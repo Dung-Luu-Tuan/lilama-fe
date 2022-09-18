@@ -10,6 +10,7 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import EuroIcon from "@mui/icons-material/Euro";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import TaskIcon from "@mui/icons-material/Task";
@@ -20,7 +21,6 @@ import { useContext } from "react";
 import { logout } from "../../utils/auth";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -131,14 +131,14 @@ const Sidebar = () => {
 
           <Link to="/costType" style={{ textDecoration: "none" }}>
             <li>
-              <SettingsApplicationsIcon className="icon" />
+              <EuroIcon className="icon" />
               <span>Loại chi phí</span>
             </li>
           </Link>
 
           <Link to="/manager" style={{ textDecoration: "none" }}>
             <li>
-              <SettingsApplicationsIcon className="icon" />
+              <ManageAccountsIcon className="icon" />
               <span>Quản lý</span>
             </li>
           </Link>
@@ -154,16 +154,6 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      {/*<div className="bottom">*/}
-      {/*  <div*/}
-      {/*    className="colorOption"*/}
-      {/*    onClick={() => dispatch({ type: "LIGHT" })}*/}
-      {/*  ></div>*/}
-      {/*  <div*/}
-      {/*    className="colorOption"*/}
-      {/*    onClick={() => dispatch({ type: "DARK" })}*/}
-      {/*  ></div>*/}
-      {/*</div>*/}
     </div>
   );
 };
