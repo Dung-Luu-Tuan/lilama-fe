@@ -4,13 +4,8 @@ import { userColumns } from "./Columns";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { handleUnauthenticated } from "../../../utils/auth";
 import { notifyStore } from "../../../store/notifyStore";
-=======
-import {handleUnauthenticated} from "../../../utils/auth";
-import {notifyStore} from "../../../store/notifyStore";
->>>>>>> c2f6e7d329a126632f6bb77972019a6d549ea61b
 
 const User = () => {
   const [data, setData] = useState([]);
@@ -23,7 +18,6 @@ const User = () => {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data))
-<<<<<<< HEAD
       .catch(function (error) {
         handleUnauthenticated(error, navigate);
         notifyStore.setState({
@@ -32,12 +26,6 @@ const User = () => {
         });
       })
       .finally(() => setLoading(false));
-=======
-        .catch(function (error) {
-          handleUnauthenticated(error, navigate)
-          notifyStore.setState({show: true, message: error.response?.data?.error})
-        }).finally(() => setLoading(false));
->>>>>>> c2f6e7d329a126632f6bb77972019a6d549ea61b
   }, []);
 
   return (
