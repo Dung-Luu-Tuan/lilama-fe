@@ -13,6 +13,11 @@ import {
   userCreateInputs,
   bindingPackageInputs,
   incomeInputs,
+<<<<<<< HEAD
+  financeInputs,
+  executionInputs,
+=======
+>>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -32,6 +37,7 @@ import Upload from "./pages/table/Upload";
 import Edit from "./pages/table/Edit";
 import User from "./pages/table/user/User";
 import Create from "./pages/table/Create";
+import Execution from "./pages/table/execution/Execution";
 import { projectVerifyColumns } from "./pages/table/project/Columns";
 import { bindingPackageVerifyColumns } from "./pages/table/bindingPackage/Columns";
 import { incomeVerifyColumns } from "./pages/table/income/Columns";
@@ -39,6 +45,12 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
+<<<<<<< HEAD
+import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
+import { financeVerifyColumns } from "./pages/table/finance/Columns";
+import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import { executionVerifyColumns } from "./pages/table/execution/Columns";
+=======
 import { acceptanceInputs, acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeInputs, financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetInputs, fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
@@ -49,6 +61,7 @@ import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Colum
 import {notifyStore} from "./store/notifyStore";
 import Snackbar from "@mui/material/Snackbar";
 
+>>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -330,6 +343,38 @@ function App() {
                     formInputs={executorInputs}
                     title="Edit executor"
                     api="https://lilama18.herokuapp.com/api/executor"
+                  />
+                }
+              />
+            </Route>
+
+            <Route path="execution">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <Execution />
+                  </Layout>
+                }
+              />
+              <Route
+                path="executionUpload"
+                element={
+                  <Upload
+                    columns={executionVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/execution/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/execution/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_EXECUTION_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={executionInputs}
+                    title="Edit executor"
+                    api="https://lilama18.herokuapp.com/api/execution"
                   />
                 }
               />

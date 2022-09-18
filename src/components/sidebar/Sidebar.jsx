@@ -3,27 +3,28 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
-import StoreIcon from "@mui/icons-material/Store";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import {Link, useNavigate} from "react-router-dom";
+import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
+import EuroIcon from "@mui/icons-material/Euro";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import TaskIcon from "@mui/icons-material/Task";
+import SavingsIcon from "@mui/icons-material/Savings";
+import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
-import {logout} from "../../utils/auth";
-
+import { logout } from "../../utils/auth";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleLogout() {
-    logout()
-    navigate("/login")
+    logout();
+    navigate("/login");
   }
 
   return (
@@ -52,14 +53,14 @@ const Sidebar = () => {
 
           <Link to="/project" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <TaskIcon className="icon" />
               <span>Dự án</span>
             </li>
           </Link>
 
           <Link to="/customer" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <AccessibilityNewIcon className="icon" />
               <span>Khách hàng</span>
             </li>
           </Link>
@@ -87,7 +88,7 @@ const Sidebar = () => {
 
           <Link to="/fcBudget" style={{ textDecoration: "none" }}>
             <li>
-              <NotificationsNoneIcon className="icon" />
+              <PaymentsIcon className="icon" />
               <span>Chi phí HDTC</span>
             </li>
           </Link>
@@ -96,6 +97,13 @@ const Sidebar = () => {
             <li>
               <SettingsSystemDaydreamOutlinedIcon className="icon" />
               <span>Đơn vị thực hiện</span>
+            </li>
+          </Link>
+
+          <Link to="/execution" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsSystemDaydreamOutlinedIcon className="icon" />
+              <span>Thực hiện</span>
             </li>
           </Link>
 
@@ -108,14 +116,14 @@ const Sidebar = () => {
 
           <Link to="/income" style={{ textDecoration: "none" }}>
             <li>
-              <SettingsApplicationsIcon className="icon" />
+              <EuroIcon className="icon" />
               <span>Dòng tiền</span>
             </li>
           </Link>
 
           <Link to="/finance" style={{ textDecoration: "none" }}>
             <li>
-              <SettingsApplicationsIcon className="icon" />
+              <SavingsIcon className="icon" />
               <span>Tài chính</span>
             </li>
           </Link>

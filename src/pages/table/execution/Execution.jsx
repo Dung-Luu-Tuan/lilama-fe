@@ -1,38 +1,26 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { executorColumns } from "./Columns";
+import { executionColumns } from "./Columns";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { handleUnauthenticated } from "../../../utils/auth";
-=======
-import {handleUnauthenticated} from "../../../utils/auth";
-import {notifyStore} from "../../../store/notifyStore";
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 
-const Executor = () => {
+const Execution = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("https://lilama18.herokuapp.com/api/executors?page=1&limit=200", {
+      .get("https://lilama18.herokuapp.com/api/executions?page=1&limit=20", {
         headers: { Authorization: window.localStorage.getItem("token") },
       })
       .then((response) => setData(response.data.data))
-<<<<<<< HEAD
       .catch(function (error) {
         handleUnauthenticated(error, navigate);
       })
       .finally(() => setLoading(false));
-=======
-        .catch(function (error) {
-          handleUnauthenticated(error, navigate)
-          notifyStore.setState({show: true, message: error.response?.data?.error})
-        }).finally(() => setLoading(false));
->>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
   }, []);
 
   console.log(data);
@@ -40,8 +28,8 @@ const Executor = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Đơn vị thực thi
-        <Link to="/executor/executorUpload" className="link">
+        Thực hiện
+        <Link to="/execution/executionUpload" className="link">
           Thêm mới
         </Link>
       </div>
@@ -49,13 +37,13 @@ const Executor = () => {
         className="datagrid"
         loading={loading}
         rows={data}
-        columns={executorColumns}
+        columns={executionColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        getRowId={(row) => row.code}
+        getRowId={(row) => row.id}
       />
     </div>
   );
 };
 
-export default Executor;
+export default Execution;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDisable } from "../useDisable";
+import { useBlock } from "../useBlock";
 
 export const userColumns = [
   {
@@ -44,7 +44,7 @@ export const userColumns = [
           <div
             className="deleteButton"
             onClick={() =>
-              useDisable({
+              useBlock({
                 api: "https://lilama18.herokuapp.com/api/user",
                 id: params.row.id,
               })()
