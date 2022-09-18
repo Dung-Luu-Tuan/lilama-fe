@@ -11,3 +11,15 @@ export function renderRel(content, url, needReview) {
       </Link>
   )
 }
+
+export function renderVerifyRel(content, existed){
+  const styles = {}
+  if (!existed || existed.need_review){
+    styles["color"] = "red"
+  }
+  return (
+      <div className="rel-field" style={{ ...styles }}>
+        {content}
+      </div>
+  )
+}

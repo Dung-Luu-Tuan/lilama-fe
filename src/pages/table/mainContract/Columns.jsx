@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
-import {renderRel} from "../../../utils/renderCell";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const mainContractColumns = [
   {
@@ -108,16 +108,25 @@ export const mainContractVerifyColumns = [
     field: "customer_code",
     headerName: "Khách hàng",
     width: 300,
+    renderCell: ({ row: { customer, customer_code } }) => {
+      return renderVerifyRel(customer_code, customer)
+    },
   },
   {
     field: "project_code",
     headerName: "Công trình/dự án",
     width: 300,
+    renderCell: ({ row: { project, project_code } }) => {
+      return renderVerifyRel(project_code, project)
+    },
   },
   {
     field: "binding_package_code",
     headerName: "Tên gói thầu",
     width: 300,
+    renderCell: ({ row: { binding_package, binding_package_code } }) => {
+      return renderVerifyRel(binding_package_code, binding_package)
+    },
   },
   {
     field: "value",

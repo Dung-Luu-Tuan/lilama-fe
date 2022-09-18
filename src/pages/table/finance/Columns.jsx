@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {renderRel} from "../../../utils/renderCell";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const financeColumns = [
   {
@@ -112,6 +112,9 @@ export const financeVerifyColumns = [
     field: "main_contract_code",
     headerName: "Số HDC",
     width: 150,
+    renderCell: ({ row: { main_contract, main_contract_code } }) => {
+      return renderVerifyRel(main_contract_code, main_contract)
+    },
   },
   {
     field: "mc_value",

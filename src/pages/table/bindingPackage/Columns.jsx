@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {renderRel} from "../../../utils/renderCell";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const bindingPackageColumns = [
   {
@@ -46,6 +46,9 @@ export const bindingPackageVerifyColumns = [
     field: "project_code",
     headerName: "Tên dự án",
     width: 150,
+    renderCell: ({ row: { project, project_code } }) => {
+      return renderVerifyRel(project_code, project)
+    },
   },
   {
     field: "code",

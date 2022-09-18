@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {renderRel} from "../../../utils/renderCell";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const fcBudgetColumns = [
   {
@@ -53,11 +53,17 @@ export const fcBudgetVerifyColumns = [
     field: "freelance_contract_code",
     headerName: "Số HDTC",
     width: 200,
+    renderCell: ({ row: { freelance_contract, freelance_contract_code } }) => {
+      return renderVerifyRel(freelance_contract_code, freelance_contract)
+    },
   },
   {
     field: "cost_type_code",
     headerName: "Mã chi phí",
     width: 200,
+    renderCell: ({ row: { cost_type, cost_type_code } }) => {
+      return renderVerifyRel(cost_type_code, cost_type)
+    },
   },
   {
     field: "value",

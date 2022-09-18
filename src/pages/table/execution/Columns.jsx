@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
-import {renderRel} from "../../../utils/renderCell";
+import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
 
 export const executionColumns = [
   {
@@ -117,11 +117,17 @@ export const executionVerifyColumns = [
     field: "freelance_contract_code",
     headerName: "Số HDTC",
     width: 200,
+    renderCell: ({ row: { freelance_contract, freelance_contract_code } }) => {
+      return renderVerifyRel(freelance_contract_code, freelance_contract)
+    },
   },
   {
     field: "cost_type_code",
     headerName: "Mã chi phí",
     width: 220,
+    renderCell: ({ row: { cost_type, cost_type_code } }) => {
+      return renderVerifyRel(cost_type_code, cost_type)
+    },
   },
   {
     field: "payment_request_code",
