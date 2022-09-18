@@ -37,10 +37,12 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
 
           <Link to="/user" style={{ textDecoration: "none" }}>
             <li>
@@ -126,6 +128,20 @@ const Sidebar = () => {
             </li>
           </Link>
 
+          <Link to="/costType" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Loại chi phí</span>
+            </li>
+          </Link>
+
+          <Link to="/manager" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Quản lý</span>
+            </li>
+          </Link>
+
           <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
@@ -137,16 +153,16 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
-      </div>
+      {/*<div className="bottom">*/}
+      {/*  <div*/}
+      {/*    className="colorOption"*/}
+      {/*    onClick={() => dispatch({ type: "LIGHT" })}*/}
+      {/*  ></div>*/}
+      {/*  <div*/}
+      {/*    className="colorOption"*/}
+      {/*    onClick={() => dispatch({ type: "DARK" })}*/}
+      {/*  ></div>*/}
+      {/*</div>*/}
     </div>
   );
 };

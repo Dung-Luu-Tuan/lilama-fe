@@ -9,7 +9,19 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
-    margin: 20px 0;
+    margin: 20px 800px 20px 0;
+
+    &:hover{
+      background-color: #6dace9;
+    }
   }
+}
+
+#readonly {
+  color: rgb(146, 130, 130);
+}
+
+#edit {
+  color: #000;
 }
 

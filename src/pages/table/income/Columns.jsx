@@ -116,7 +116,6 @@ export const incomeColumns = [
           >
             <div className="editButton">Edit</div>
           </Link>
-          <div className="deleteButton">Disable</div>
         </div>
       );
     },

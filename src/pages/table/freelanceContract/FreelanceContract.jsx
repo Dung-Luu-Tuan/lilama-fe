@@ -4,6 +4,7 @@ import { freelanceContractColumns } from "./Columns";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const FreelanceContract = () => {
   const [data, setData] = useState([]);
@@ -13,7 +14,7 @@ const FreelanceContract = () => {
   useEffect(() => {
     axios
       .get(
-        "https://lilama18.herokuapp.com/api/freelance-contracts?page=1&limit=20",
+        "https://lilama18.herokuapp.com/api/freelance-contracts?page=1&limit=200",
         {
           headers: { Authorization: window.localStorage.getItem("token") },
         }
@@ -21,6 +22,7 @@ const FreelanceContract = () => {
       .then((response) => setData(response.data.data))
         .catch(function (error) {
           handleUnauthenticated(error, navigate)
+          notifyStore.setState({show: true, message: error.response?.data?.error})
         }).finally(() => setLoading(false));
   }, []);
 
@@ -28,7 +30,7 @@ const FreelanceContract = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm HDTC mới
+        HDTC
         <Link to="/freelance-contract/freelanceContractUpload" className="link">
           Thêm mới
         </Link>

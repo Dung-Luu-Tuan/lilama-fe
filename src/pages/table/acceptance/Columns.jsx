@@ -12,7 +12,7 @@ export const acceptanceColumns = [
     width: 220,
   },
   {
-    field: "excution_value",
+    field: "execution_value",
     headerName: "Giá trị thực hiện",
     width: 180,
   },
@@ -50,7 +50,6 @@ export const acceptanceColumns = [
           >
             <div className="editButton">Edit</div>
           </Link>
-          <div className="deleteButton">Disable</div>
         </div>
       );
     },
@@ -92,5 +91,51 @@ export const acceptanceVerifyColumns = [
     field: "remaining_value",
     headerName: "Giá trị dở dang",
     width: 150,
+  },
+];
+
+export const acceptanceInputs = [
+  {
+    id: "freelance_contract_code",
+    name: "freelance_contract.code",
+    label: "Số HDTC",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "description",
+    label: "Nội dung nghiệm thu của đợt",
+    type: "text",
+    canEdit: "",
+  },
+  {
+    id: "execution_value",
+    label: "Giá trị thực hiện",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "acceptance_value",
+    label: "Gt nghiệm thu",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "invoice_date",
+    label: "Ngày hóa đơn",
+    type: "date",
+    canEdit: "",
+  },
+  {
+    id: "new_distributed_value",
+    label: "Giá trị HDC tương ứng dự kiến quyết toán",
+    type: "number",
+    canEdit: "",
+  },
+  {
+    id: "remaining_value",
+    label: "Giá trị dở dang",
+    type: "number",
+    canEdit: "readonly",
   },
 ];

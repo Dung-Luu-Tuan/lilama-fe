@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const BindingPackage = () => {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ const BindingPackage = () => {
   useEffect(() => {
     var config = {
       method: 'get',
-      url: 'https://lilama18.herokuapp.com/api/binding-packages?page=1&limit=20',
+      url: 'https://lilama18.herokuapp.com/api/binding-packages?page=1&limit=200',
       headers: { Authorization: window.localStorage.getItem("token") }
     };
 
@@ -25,13 +26,14 @@ const BindingPackage = () => {
       })
       .catch(function (error) {
         handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
       }).finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dự án mới
+        Gói thầu
         <Link to="/bindingPackage/bindingPackageUpload" className="link">
           Thêm mới
         </Link>

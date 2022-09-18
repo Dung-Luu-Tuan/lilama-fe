@@ -13,8 +13,11 @@ import {
   userCreateInputs,
   bindingPackageInputs,
   incomeInputs,
+<<<<<<< HEAD
   financeInputs,
   executionInputs,
+=======
+>>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -42,13 +45,28 @@ import { customerVerifyColumns } from "./pages/table/customer/Columns";
 import { mainContractVerifyColumns } from "./pages/table/mainContract/Columns";
 import { executorVerifyColumns } from "./pages/table/executor/Columns";
 import { freelanceContractVerifyColumns } from "./pages/table/freelanceContract/Columns";
+<<<<<<< HEAD
 import { acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
 import { financeVerifyColumns } from "./pages/table/finance/Columns";
 import { fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
 import { executionVerifyColumns } from "./pages/table/execution/Columns";
+=======
+import { acceptanceInputs, acceptanceVerifyColumns } from "./pages/table/acceptance/Columns";
+import { financeInputs, financeVerifyColumns } from "./pages/table/finance/Columns";
+import { fcBudgetInputs, fcBudgetVerifyColumns } from "./pages/table/fcBudget/Columns";
+import CostType from "./pages/table/costType/CostType";
+import { costTypeInputs, costTypeVerifyColumns } from "./pages/table/costType/Columns";
+import Manager from "./pages/table/manager/Manager";
+import { managerInputs, managerVerifyColumns } from "./pages/table/manager/Columns";
+import {notifyStore} from "./store/notifyStore";
+import Snackbar from "@mui/material/Snackbar";
+
+>>>>>>> e9c5031e0504351f57d4ff79f8419e3c884166ea
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const showNotify = notifyStore(state => state.show)
+  const errorMessage = notifyStore(state => state.message)
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -286,6 +304,16 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={fcBudgetInputs}
+                    title="Edit Budget"
+                    api="https://lilama18.herokuapp.com/api/budget"
+                  />
+                }
+              />
             </Route>
 
             <Route path="executor">
@@ -373,6 +401,16 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={acceptanceInputs}
+                    title="Edit Acceptance"
+                    api="https://lilama18.herokuapp.com/api/acceptance"
+                  />
+                }
+              />
             </Route>
 
             <Route path="income">
@@ -440,9 +478,83 @@ function App() {
                 }
               />
             </Route>
+
+            <Route path="costType">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <CostType />
+                  </Layout>
+                }
+              />
+              <Route
+                path="costTypeUpload"
+                element={
+                  <Upload
+                    columns={costTypeVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/cost-type/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/cost-type/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_COST_TYPE_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={costTypeInputs}
+                    title="Edit Cost Type"
+                    api="https://lilama18.herokuapp.com/api/cost-type"
+                  />
+                }
+              />
+            </Route>
+
+
+            <Route path="manager">
+              <Route
+                index
+                element={
+                  <Layout>
+                    <Manager />
+                  </Layout>
+                }
+              />
+              <Route
+                path="managerUpload"
+                element={
+                  <Upload
+                    columns={managerVerifyColumns}
+                    api_verify="https://lilama18.herokuapp.com/api/manager/upload/verify"
+                    api_commit="https://lilama18.herokuapp.com/api/manager/upload/commit"
+                    api_sampleLink="https://lilama18.herokuapp.com/api/config/IMPORT_MANAGER_SAMPLE_FILE"
+                  />
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <Edit
+                    formInputs={managerInputs}
+                    title="Edit Manager"
+                    api="https://lilama18.herokuapp.com/api/manager"
+                  />
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
+      <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal:"center" }}
+          autoHideDuration={5000}
+          open={showNotify}
+          severity="error"
+          onClose={() => notifyStore.setState({show: false})}
+          message={errorMessage}
+          key="error-snackbar"
+      />
     </div>
   );
 }

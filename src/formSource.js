@@ -165,6 +165,7 @@ export const customerInputs = [
 export const incomeInputs = [
   {
     id: "main_contract_code",
+    name: "main_contract.code",
     label: "Số HDC",
     type: "text",
     canEdit: "",
@@ -203,13 +204,13 @@ export const incomeInputs = [
   {
     id: "vat_8",
     label: "VAT 8%",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
     id: "taxable_value",
     label: "GT Sau Thuế",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
@@ -227,19 +228,19 @@ export const incomeInputs = [
   {
     id: "payment_request_value",
     label: "Số Tiền Giấy DNTT",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
     id: "advance_refund_value",
     label: "Hoàn trả TƯ",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
     id: "retention_value",
     label: "Giữ lại",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
@@ -251,13 +252,13 @@ export const incomeInputs = [
   {
     id: "received_value",
     label: "Số Tiền nhận",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
     id: "deduction_value",
     label: "GT Gán trừ",
-    type: "text",
+    type: "number",
     canEdit: "",
   },
   {
@@ -276,115 +277,18 @@ export const incomeInputs = [
   {
     id: "remaining_advance_refund",
     label: "Tiền còn lại TƯ giảm dần",
-    type: "text",
+    type: "number",
     canEdit: "readonly",
   },
   {
     id: "payment_request_debt",
     label: "Số tiền còn nợ theo DNTT",
-    type: "text",
+    type: "number",
     canEdit: "readonly",
   },
 ];
 
-export const financeInputs = [
-  {
-    id: "main_contract",
-    label: "Số HDC",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "mc_value",
-    label: "Giá trị HDC",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_distributed_value",
-    label: "Giá trị phân bổ HDC tương ứng khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_execution_value",
-    label: "Chi phí thi công TT khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_retention_value",
-    label: "Giá trị giữ lại khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_year",
-    label: "Năm GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_rate",
-    label: "Tỷ lệ GK (%)",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_final_value",
-    label: "Định phí khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "contract_net_profit",
-    label: "Lãi ròng khi GK",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_distributed_value",
-    label: "Giá trị phân bổ HDC tương ứng khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_execution_value",
-    label: "Chi phí thi công TT khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_retention_value",
-    label: "Giá trị giữ lại khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_year",
-    label: "Năm QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_rate",
-    label: "Tỷ lệ QT (%)",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_final_value",
-    label: "Định phí khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-  {
-    id: "settlement_net_profit",
-    label: "Lãi ròng khi QT",
-    type: "text",
-    canEdit: "readonly",
-  },
-];
+
 
 export const mainContractInputs = [
   {

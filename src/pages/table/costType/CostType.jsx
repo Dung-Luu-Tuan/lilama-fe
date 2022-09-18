@@ -1,34 +1,41 @@
 import "../datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { customerColumns } from "./Columns";
+import { costTypeColumns } from "./Columns";
 import {Link, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {handleUnauthenticated} from "../../../utils/auth";
 import {notifyStore} from "../../../store/notifyStore";
 
-const Customer = () => {
+const CostType = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("https://lilama18.herokuapp.com/api/customers?page=1&limit=200", {
-        headers: { Authorization: window.localStorage.getItem("token") },
+    var config = {
+      method: 'get',
+      url: 'https://lilama18.herokuapp.com/api/cost-types',
+      headers: { Authorization: window.localStorage.getItem("token") }
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.data);
+        setData(response.data.data)
       })
-      .then((response) => setData(response.data.data))
-        .catch(function (error) {
-          handleUnauthenticated(error, navigate)
-          notifyStore.setState({show: true, message: error.response?.data?.error})
-        }).finally(() => setLoading(false));
+      .catch(function (error) {
+        console.log(error);
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Khách hàng
-        <Link to="/customer/customerUpload" className="link">
+        Thêm Chi phí mới
+        <Link to="/costType/costTypeUpload" className="link">
           Thêm mới
         </Link>
       </div>
@@ -36,13 +43,13 @@ const Customer = () => {
         className="datagrid"
         loading={loading}
         rows={data}
-        columns={customerColumns}
+        columns={costTypeColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         getRowId={(row) => row.code}
       />
     </div>
   );
-};
 
-export default Customer;
+};
+export default CostType;

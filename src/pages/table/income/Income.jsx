@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { incomeColumns } from "./Columns";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import moment from "moment/moment";
+import {handleUnauthenticated} from "../../../utils/auth";
+import {notifyStore} from "../../../store/notifyStore";
 
 const Income = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     var config = {
       method: 'get',
-      url: 'https://lilama18.herokuapp.com/api/incomes?page=1&limit=20',
+      url: 'https://lilama18.herokuapp.com/api/incomes?page=1&limit=200',
       headers: { Authorization: window.localStorage.getItem("token") }
     };
 
@@ -22,7 +26,9 @@ const Income = () => {
       })
       .catch(function (error) {
         console.log(error);
-      });
+        handleUnauthenticated(error, navigate)
+        notifyStore.setState({show: true, message: error.response?.data?.error})
+      }).finally(() => setLoading(false));
   }, []);
 
   console.log(data);
@@ -63,7 +69,7 @@ const Income = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Thêm dòng tiền mới
+        Dòng tiền
         <Link to="/income/incomeUpload" className="link">
           Thêm mới
         </Link>
@@ -71,6 +77,7 @@ const Income = () => {
       <DataGrid
         className="datagrid"
         rows={result}
+        loading={loading}
         columns={incomeColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
