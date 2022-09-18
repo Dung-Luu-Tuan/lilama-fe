@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import {Chip} from "@mui/material";
 
 export function renderRel(content, url, needReview) {
   const styles = {}
@@ -22,4 +23,12 @@ export function renderVerifyRel(content, existed){
         {content}
       </div>
   )
+}
+
+export function renderReview(needReview) {
+  if (needReview){
+    return <Chip label="Chưa duyệt" color="error" size="small" />
+  } else {
+    return <Chip label="Đã duyệt" color="success" size="small" />
+  }
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
 import moment from "moment";
-import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
+import {renderRel, renderReview, renderVerifyRel} from "../../../utils/renderCell";
 
 export const mainContractColumns = [
   {
@@ -54,6 +54,12 @@ export const mainContractColumns = [
     field: "description",
     headerName: "Hạng mục HDC",
     width: 300,
+  },
+  {
+    field: "need_review",
+    headerName: "Xác thực",
+    width: 150,
+    renderCell: ({row}) => renderReview(row.need_review)
   },
   {
     field: "action",

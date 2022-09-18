@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
+import {renderReview} from "../../../utils/renderCell";
 
 export const customerColumns = [
   {
@@ -21,6 +22,12 @@ export const customerColumns = [
     field: "tax_code",
     headerName: "Mã thuế",
     width: 200,
+  },
+  {
+    field: "need_review",
+    headerName: "Xác thực",
+    width: 150,
+    renderCell: ({row}) => renderReview(row.need_review)
   },
   {
     field: "action",

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDisable } from "../useDisable";
+import {renderReview} from "../../../utils/renderCell";
 
 export const managerColumns = [
   {
@@ -14,8 +15,9 @@ export const managerColumns = [
   },
   {
     field: "need_review",
-    headerName: "Yêu cầu xác thực",
-    width: 200,
+    headerName: "Xác thực",
+    width: 150,
+    renderCell: ({row}) => renderReview(row.need_review)
   },
   {
     field: "action",

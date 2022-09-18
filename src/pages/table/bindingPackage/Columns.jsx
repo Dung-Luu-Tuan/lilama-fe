@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {renderRel, renderVerifyRel} from "../../../utils/renderCell";
+import {renderRel, renderReview, renderVerifyRel} from "../../../utils/renderCell";
 
 export const bindingPackageColumns = [
   {
@@ -19,6 +19,12 @@ export const bindingPackageColumns = [
     field: "description",
     headerName: "Thông tin gói thầu",
     width: 550,
+  },
+  {
+    field: "need_review",
+    headerName: "Xác thực",
+    width: 150,
+    renderCell: ({row}) => renderReview(row.need_review)
   },
   {
     field: "action",
